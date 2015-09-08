@@ -134,3 +134,6 @@ template_loaders = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader'
 )
+
+MEDIA_ROOT = '/media/'
+Media_URL = '/static-media/'
