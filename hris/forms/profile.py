@@ -1,48 +1,38 @@
 from django import forms
 from hris.models import Employee
 from django.contrib.auth.models import User
+from hris.models import Role
+from django.core.exceptions import ValidationError
 
+def validate_email_unique(value):
+    exists = User.objects.filter(email=value)
+    if exists:
+        raise ValidationError("Email address %s already exits, must be unique" % value)
 
-class UserForm(forms.ModelForm):
+class UserForm(forms.ModelForm):    
+    password = forms.CharField(
+        required=True, widget=
+        forms.PasswordInput(attrs= {'type': 'password'}),
+    )
+    email = forms.EmailField(
+        required=True,
+        validators=[validate_email_unique]
+    )
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email')
+        fields = ('username', 'password', 'email', 'first_name', 'last_name')
+
 
 class EmployeeForm(forms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        # magic 
-        self.user = kwargs['instance'].user
-        user_kwargs = kwargs.copy()
-        user_kwargs['instance'] = self.user
-        self.uf = UserForm(*args, **user_kwargs)
-        # magic end 
-
-        super(EmployeeForm, self).__init__(*args, **kwargs)
-
-        self.fields.update(self.uf.fields)
-        self.initial.update(self.uf.initial)
-         
-        # define fields order if needed
-        self.fields.keyOrder = (
-            'last_name',
-            'first_name',
-            'second_name',
-
-            "image",
-            "street",
-            "city",
-            "state",
-            "zip",
-
-        )
-
-    def save(self, *args, **kwargs):
-        # save both forms   
-        self.uf.save(*args, **kwargs)
-        return super(EmployeeForm, self).save(*args, **kwargs)
+    roles = forms.ModelMultipleChoiceField(
+        label="User Roles",
+        queryset=Role.objects.all(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple()
+    )
 
     class Meta:
         model = Employee
-        fields = ("image", "street", "city", "state", "zip", )
+        exclude = ('user',  )
+        fields = ('street', 'city', 'state', 'zip', 'image', 'roles' )

@@ -1,0 +1,44 @@
+{% extends "base.html"%}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+<!-- This is page header and bredcrumb -->
+{% block content_header %}
+    <section class="content-header">
+      <h1>
+        HRIS
+        <small>Employee Profile</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Employee</a></li>
+        <li class="active">Add Employee</li>
+      </ol>
+    </section>
+{% endblock %}
+<!-- Add your content here -->
+{% block content %}
+  <div class="row">
+    <div class="col-md-8">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Employee Add Form</h3>
+        </div>
+        <form role="form" action="" method="post" class="form">
+          <div class="box-body"> 
+            {% load bootstrap3 %}
+              {% csrf_token %}
+              {% bootstrap_form user_form %}
+              {% bootstrap_form form %}
+          </div>
+          <div class="box-footer">
+            {% buttons %}
+                <button type="submit" class="btn btn-primary" value="save">Submit</button>
+            {% endbuttons %}            
+          </div>
+          </form>
+      </div>
+    </div>
+    
+  </div>
+{% endblock %} 
+<!-- Add your javascript plugin src or code content here -->
+{% block footer_js %}{% endblock %}
