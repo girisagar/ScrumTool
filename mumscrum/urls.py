@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+
 # from django.contrib.auth import login
 from django.contrib.auth.views import (
     password_reset,
@@ -66,7 +67,11 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^hris/', include("hris.urls")),
     # serving media files
-    url(r'^static-media/(?P<path>.*)$', 'django.views.static.serve', {
-        'document_root': settings.MEDIA_ROOT}),
 ]
 
+if settings.DEBUG:
+    # static files (images, css, javascript, etc.)
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': settings.MEDIA_ROOT})
+    ]

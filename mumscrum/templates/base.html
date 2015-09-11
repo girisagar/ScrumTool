@@ -1,4 +1,6 @@
 {% load staticfiles %}
+
+{% load employee_tags %}
 <!DOCTYPE html>
 <html>
 
@@ -19,6 +21,7 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{% static 'dist/css/skins/_all-skins.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mumscrum.css' %}">
     {% comment %}
     <!-- iCheck -->
     <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
@@ -75,7 +78,7 @@
                       <li><!-- start message -->
                         <a href="#">
                           <div class="pull-left">
-                            <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle" alt="User Image">
+                            {% profile_image request.user.employee "img-circle" %} 
                           </div>
                           <h4>
                             Support Team
@@ -251,16 +254,18 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="{% static 'dist/img/user2-160x160.jpg' %} " class="user-image" alt="User Image">
+                  {% profile_image request.user.employee "user-image" %}
                   <span class="hidden-xs">Alexander Pierce</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="{% static 'dist/img/user2-160x160.jpg' %} " class="img-circle" alt="User Image">
+                    {% profile_image request.user.employee "img-circle" %}
                     <p>
-                      Alexander Pierce - Web Developer
-                      <small>Member since Nov. 2012</small>
+                      {{request.user.get_full_name}} - {% for role in request.user.employee.roles.all %}
+                        {{role.name}}
+                      {% endfor %}
+                      <small>Member since {{request.user.date_joined|date:"b, Y"}}</small>
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -304,7 +309,7 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="{% static 'dist/img/user2-160x160.jpg' %} " class="img-circle" alt="User Image">
+              {% profile_image request.user.employee "img-circle" %} 
             </div>
             <div class="pull-left info">
               <p>Alexander Pierce</p>

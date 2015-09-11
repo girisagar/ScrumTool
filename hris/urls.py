@@ -1,8 +1,8 @@
 from django.conf.urls import include, url
 from hris.views import home
 from hris.views import (
-	EmployeeCreateView,
-	EmployeeListView
+    EmployeeCreateView,
+    EmployeeListView
 )
 
 urlpatterns = [

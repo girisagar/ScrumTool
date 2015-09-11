@@ -1,0 +1,10 @@
+.employee-profile-avatar {
+    /*vertical-align: middle;*/
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    /*margin-left: -100%;*/
+    /*margin-top: -50px;*/
+    max-height: 50px;
+    max-width: 50px;
+}

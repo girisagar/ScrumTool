@@ -1,2 +1,2 @@
-from hris.forms.profile import EmployeeForm
-from hris.forms.profile import UserForm
+from hris.forms.employee import EmployeeForm
+from hris.forms.employee import UserForm

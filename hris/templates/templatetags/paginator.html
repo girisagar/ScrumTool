@@ -1,0 +1,23 @@
+{% if paged %}
+    <div >    
+        <ul class=" pager " >
+            {% if has_previous %}
+                <!-- <li class="previous"><a href="?page=1"><i class="fa fa-angle-double-left"></i></a></li> -->
+                <li class="previous"><a href="?page={{ previous }}">&larr;&nbsp;previous</a></li>
+            {% endif %}
+
+            {% for i in page_numbers %}
+                {% if page == i %}
+                    <li  class="disabled"  ><a>{{i}}</a></li>
+                {% else %}
+                <li><a href="?page={{i}}">{{i}}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if has_next %}
+                <li class="next"><a href="?page={{ next }}">next&nbsp;&rarr;</a></li>
+                <!-- <li class="next"><a href="?page={{ page_obj.paginator.num_pages }}"><i class="fa fa-angle-double-right"></i></a></li> -->
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}

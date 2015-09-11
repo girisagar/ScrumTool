@@ -4,23 +4,23 @@ from django.contrib.auth.models import User
 import os
 
 class Role(models.Model):
-    name = models.CharField(max_length=50, null=True, blank=True, unique=True)
+    name = models.CharField(max_length=50, null=False, blank=False, unique=True)
     icon_class = models.CharField(max_length=50, null=True, blank=True)
 
     def __unicode__(self):
         return self.name
 
 class Employee(models.Model):
-    user = models.OneToOneField(User, unique=True, null=False, blank=False)
-    image = models.ImageField(upload_to=os.path.join(settings.MEDIA_ROOT, "employee-image"), null=True, blank=True)
+    user = models.OneToOneField(User, null=False, blank=False, related_name='employee')
+    image = models.ImageField(upload_to="hris/employee-image", null=True, blank=True)
     street = models.CharField(max_length=100, null=True, blank=True)
     city = models.CharField(max_length=50, null=True, blank=True)
     state = models.CharField(max_length=50, null=True, blank=True)
     zip = models.IntegerField(null=True, blank=True)
-    roles = models.ManyToManyField(Role, null=True, blank=True)
+    roles = models.ManyToManyField(Role)
 
     def __unicode__(self):
-        return str(self.user.username)
+        return str(self.user.id)
 
     @property
     def address(self):

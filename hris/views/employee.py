@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse
 class EmployeeCreateView(CreateView):
     model = Employee
     form_class = EmployeeForm
-    template_name = 'employee/employee_wizard.html'
+    template_name = 'employee/employee_form.html'
     user_form = UserForm
 
     def form_valid(self, form):
@@ -20,11 +20,11 @@ class EmployeeCreateView(CreateView):
             user = user_form.save()
             form.instance.user = user
             employee = form.save()
-            return HttpResponse('SuccessFull !!!')
         self.set_user_form(user_form)
         return super(EmployeeCreateView, self).form_invalid(form)
 
     def get_context_data(self, **kwargs):
+        user = self.request.user
         roles = Role.objects.all()
         context = super(EmployeeCreateView, self).get_context_data(**kwargs)
         context['user_form'] = self.user_form
@@ -35,8 +35,13 @@ class EmployeeCreateView(CreateView):
         self.user_form = form
 
     def get_success_url(self):
-        return reverse('hris_home')
+        return reverse('hris_employee_list')
 
 class EmployeeListView(ListView):
     template_name = 'employee/employee_list.html'
     model = Employee
+    paginate_by = 1
+    queryset = Employee.objects.all()
+
+    def dispatch(self, *args, **kwargs):
+        return super(EmployeeListView, self).dispatch(*args, **kwargs)
