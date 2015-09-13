@@ -64,7 +64,7 @@ urlpatterns = [
         name='password_reset_complete'
     ),
 
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),    
     url(r'^hris/', include("hris.urls")),
     # serving media files
 ]

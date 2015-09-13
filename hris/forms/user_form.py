@@ -4,12 +4,13 @@ from django.contrib.auth.models import User
 from hris.models import Role
 from django.core.exceptions import ValidationError
 
+
 def validate_email_unique(value):
     exists = User.objects.filter(email=value)
     if exists:
         raise ValidationError("Email address %s already exits, must be unique" % value)
 
-class UserForm(forms.ModelForm):    
+class UserForm(forms.ModelForm): 
     password = forms.CharField(
         required=True, widget=
         forms.PasswordInput(attrs= {'type': 'password'}),
@@ -22,17 +23,3 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'password', 'email', 'first_name', 'last_name')
-
-
-class EmployeeForm(forms.ModelForm):
-    roles = forms.ModelMultipleChoiceField(
-        label="User Roles",
-        queryset=Role.objects.all(),
-        required=False,
-        widget=forms.CheckboxSelectMultiple()
-    )
-
-    class Meta:
-        model = Employee
-        exclude = ('user',  )
-        fields = ('street', 'city', 'state', 'zip', 'image', 'roles' )

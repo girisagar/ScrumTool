@@ -20,7 +20,7 @@ class Employee(models.Model):
     roles = models.ManyToManyField(Role)
 
     def __unicode__(self):
-        return str(self.user.id)
+        return str(self.user.username)
 
     @property
     def address(self):

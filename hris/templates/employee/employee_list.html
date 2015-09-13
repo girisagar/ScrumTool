@@ -2,6 +2,9 @@
 {% block title %}{% endblock %}
 {% block head %}{% endblock %}
 <!-- This is page header and bredcrumb -->
+
+{% block active_employees %}active{% endblock %}
+
 {% block content_header %}
     <section class="content-header">
       <h1>
@@ -9,8 +12,8 @@
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{% url 'hris_home' %}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li><a href="{% url 'hris_home' %}"><i class="fa fa-dashboard"></i> HRIS</a></li>
+        <li class="active">Employees</li>
       </ol>
     </section>
 {% endblock %}
@@ -25,6 +28,14 @@
         <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
       </div>
     </div><!-- /.box-header -->
+    <div class="box-header with-border">
+      <h3 class="box-title"> </h3>
+      <div class="box-tools pull-right">
+          <a  href="{% url 'hris_employee_create' %}">
+            <i title="Add New Employee" class="fa  fa-plus-circle" style="font-size: 40px; color: #3C8DBC;"></i>
+          </a>
+      </div>
+    </div><!-- /.box-header -->
     <div class="box-body">
       <ul class="products-list product-list-in-box">
         {% for employee in employee_list %}
@@ -36,7 +47,9 @@
             <div class="product-info">
               <a href="javascript::;" class="product-title">
                 {{employee.user.get_full_name}} 
-                <span class="label label-warning pull-right">Edit</span>
+                <a class="pull-right" href="{% url 'hris_employee_update' employee.id %}">
+                  <i class="fa fa-edit" style="font-size: 20px; color: #00A65A;"></i>
+                </a>
               </a>
               <span class="product-description">
                 <span><small><b>Joined:&nbsp;</b>{{employee.user.date_joined | date}}</small></span><br>
@@ -55,14 +68,18 @@
           {% endfor %}
       </ul>
     </div><!-- /.box-body -->
+    {% comment %}
     <div class="box-footer text-center">
-      <a href="javascript::;" class="uppercase">View All Products</a>
+      <a href="javascript::;" class="uppercase">View All Employees</a>
     </div><!-- /.box-footer -->
+    {% endcomment %}
   </div><!-- /.box -->
+
 {% if is_paginated %}
   {% load paginator %}
   {% paginator %}
 {% endif %}
+
 {% endblock %} 
 <!-- Add your javascript plugin src or code content here -->
 {% block footer_js %}

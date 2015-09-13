@@ -12,15 +12,18 @@
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{% url 'hris_home' %}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li><a href="{% url 'hris_home' %}"><i class="fa fa-dashboard"></i> HRIS</a></li>
+        <li><a href="{% url 'hris_employee_list' %}">Employees</a></li>
+        <li class="active">
+          {% if object %}Update{% else %}Add{% endif %}
+        </li>
       </ol>
     </section>
 {% endblock %}
 <!-- Add your content here -->
 {% block content %}
     <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-12">
        
         <!--      Wizard container        -->   
         <div class="wizard-container"> 
@@ -33,12 +36,16 @@
             
                   <div class="box-header">
                       <h3>
-                         <b>BUILD</b> New Employee Profile <br>
+                        {% if object %}
+                          <b>Update</b> {{object.user.get_full_name.title}}'s Profile <br>
+                        {% else %}
+                          <b>BUILD</b> New Employee Profile <br>
+                        {% endif %}
                       </h3>
                   </div>
                   <ul>
                         <li><a href="#about" data-toggle="tab">About</a></li>
-                        <li><a href="#account" data-toggle="tab">Account</a></li>
+                        <!-- <li><a href="#account" data-toggle="tab">Account</a></li> -->
                         <li><a href="#address" data-toggle="tab">Address</a></li>
                     </ul>
                     <div class="tab-content">
@@ -48,7 +55,13 @@
                               <div class="col-sm-4 col-sm-offset-1">
                                  <div class="picture-container">
                                       <div class="picture">
+                                        {% if form.errors or user_form.errors %}
+                                          <img src="{% static form.image.url %}" class="picture-src" id="wizardPicturePreview" title=""/>
+                                        {% elif object %}
+                                          <img src="{% static object.image.url %}" class="picture-src" id="wizardPicturePreview" title=""/>
+                                        {% else %}
                                           <img src="{% static 'plugins/wizard/images/default-avatar.png' %}" class="picture-src" id="wizardPicturePreview" title=""/>
+                                        {% endif %}
                                           <input class="" id="wizard-picture" name="image" title="" type="file">
                                       </div>
                                       <h6>Choose Picture</h6>
@@ -59,6 +72,7 @@
                               </div>
                           </div>
                         </div>
+                        {% comment %}
                         <div class="tab-pane" id="account">
                             <h4 class="info-text"> What are you doing? </h4>
                             <div class="row">
@@ -80,6 +94,7 @@
                                   <div class="col-sm-1"></div>
                             </div>
                         </div>
+                        {% endcomment %}
                         <div class="tab-pane" id="address">
                             <div class="row">
                                 <div class="col-sm-2"></div>
@@ -98,6 +113,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="wizard-footer">
                             <div class="pull-right">
                                 <input type='button' class='btn btn-next btn-fill btn-warning' name='next' value='Next' />
