@@ -10,10 +10,16 @@ class EmployeeForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple()
     )
 
+    emp_id = forms.CharField(
+        label="EMP ID",
+        widget=forms.TextInput({'placeholder': 'EMP-999'}),
+        required=True,
+    )
+
     class Meta:
         model = Employee
-        exclude = ('user',  )
-        fields = ('street', 'city', 'state', 'zip', 'image' )
+        exclude = ('user',)
+        fields = ('phone', 'street', 'city', 'state', 'zip', 'image', 'emp_id',)
 
     def save(self):
         return super(EmployeeForm, self).save()

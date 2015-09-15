@@ -8,8 +8,7 @@
     {% csrf_token %}
     {% bootstrap_form form %}
     <input type="hidden" name="next" value="{{ next }}" />
-    {% buttons %}
-       <div class="row">
+     <div class="row">
       <div class="col-xs-8">
         <div class="checkbox icheck">
           <label>
@@ -22,7 +21,6 @@
       </div><!-- /.col -->
       <input type="hidden" name="next" value="{{ next }}" />
     </div>
-    {% endbuttons %}
   </form>
   <a href="{% url 'password_reset' %}">I forgot my password</a><br>
 

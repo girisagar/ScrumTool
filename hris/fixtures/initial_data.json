@@ -1,0 +1,164 @@
+[
+  {
+    "fields": {
+      "username": "sagar",
+      "first_name": "Sagar",
+      "last_name": "Giri",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2015-09-14T16:40:22.906Z",
+      "groups": [],
+      "user_permissions": [],
+      "password": "pbkdf2_sha256$20000$lwWf4KMTj2qs$JlTAUc4KOTN+lLuEAjtTTw2icYltz8jIiG8S6hZvhUI=",
+      "email": "sagar.giri95@gmail.com",
+      "date_joined": "2015-09-10T05:31:21Z"
+    },
+    "model": "auth.user",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "username": "aadarsh.bhattarai",
+      "first_name": "Aadarsh",
+      "last_name": "Bhattarai",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "last_login": null,
+      "groups": [],
+      "user_permissions": [],
+      "password": "Bhattarai",
+      "email": "sagar.giri1@gmail.com",
+      "date_joined": "2015-09-10T21:39:23Z"
+    },
+    "model": "auth.user",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "username": "bibek.chitrakar",
+      "first_name": "Bibek",
+      "last_name": "Chitrakar",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "last_login": null,
+      "groups": [],
+      "user_permissions": [],
+      "password": "ram",
+      "email": "bibek.chitrakar@gmail.com",
+      "date_joined": "2015-09-12T06:46:06.612Z"
+    },
+    "model": "auth.user",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "city": "Fairfield",
+      "roles": [],
+      "is_deleted": false,
+      "updated_by": null,
+      "zip": 525572,
+      "image": "hris/employee-image/IMG_1148.JPG",
+      "created_on": "2015-09-14T23:22:25.090Z",
+      "created_by": null,
+      "deleted_on": null,
+      "phone": "",
+      "state": "Iowa",
+      "street": "1000 N 4TH ST",
+      "user": 1,
+      "emp_id": "EMP-100",
+      "updated_on": "2015-09-14T23:22:43.014Z",
+      "deleted_by": null
+    },
+    "model": "hris.employee",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "city": "Fairfield",
+      "roles": [
+        1
+      ],
+      "is_deleted": false,
+      "updated_by": null,
+      "zip": 52557,
+      "image": "hris/employee-image/pic2_Q9lIklH.jpg",
+      "created_on": "2015-09-14T23:22:25.090Z",
+      "created_by": null,
+      "deleted_on": null,
+      "phone": "",
+      "state": "Iowa",
+      "street": "1000 N 4TH ST",
+      "user": 2,
+      "emp_id": "EMP-101",
+      "updated_on": "2015-09-14T23:22:43.014Z",
+      "deleted_by": null
+    },
+    "model": "hris.employee",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "city": "Fairfield",
+      "roles": [],
+      "is_deleted": false,
+      "updated_by": null,
+      "zip": 52557,
+      "image": "hris/employee-image/pic_3_GNYXpBv.jpg",
+      "created_on": "2015-09-14T23:22:25.090Z",
+      "created_by": null,
+      "deleted_on": null,
+      "phone": "",
+      "state": "Iowa",
+      "street": "1000 N 4TH ST",
+      "user": 3,
+      "emp_id": "EMP-103",
+      "updated_on": "2015-09-14T23:22:43.014Z",
+      "deleted_by": null
+    },
+    "model": "hris.employee",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "icon_class": " fa-user",
+      "name": "HRAdmin"
+    },
+    "model": "hris.role",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "icon_class": "fa-user-secret",
+      "name": "Product Owner"
+    },
+    "model": "hris.role",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "icon_class": "fa-odnoklassniki",
+      "name": "Scrum Master"
+    },
+    "model": "hris.role",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "icon_class": "fa-code",
+      "name": "Developer"
+    },
+    "model": "hris.role",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "icon_class": "fa-bug",
+      "name": "Tester"
+    },
+    "model": "hris.role",
+    "pk": 5
+  }
+]

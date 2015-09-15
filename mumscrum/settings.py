@@ -40,6 +40,7 @@ INSTALLED_APPS = (
 
     'hris',
     'bootstrap3',
+    'scrum',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,7 +52,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'hris.middleware.LoginRequiredMiddleware'
+    'hris.middleware.LoginRequiredMiddleware',
+    'hris.middleware.StatsMiddleware',
 )
 
 ROOT_URLCONF = 'mumscrum.urls'

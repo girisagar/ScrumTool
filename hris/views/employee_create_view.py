@@ -18,7 +18,7 @@ class EmployeeCreateView(CreateView):
         return super(EmployeeCreateView, self).post(*args, **kwargs)
         
     def form_valid(self, form):
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         user_form = UserForm(self.request.POST, self.request.FILES)
         if user_form.is_valid():
             user = user_form.save()
