@@ -10,7 +10,6 @@ from django.contrib import messages
 class EmployeeUpdateView(UpdateView):
     model = Employee
     form_class = EmployeeForm
-    template_name = 'employee/employee_form.html'
     user_form = UserUpdateForm
 
     def form_valid(self, form):
@@ -32,7 +31,10 @@ class EmployeeUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(EmployeeUpdateView, self).get_context_data(**kwargs)
-        user = self.request.user
+        roles = self.get_object().roles.filter(is_visible=True)
+        not_selected = Role.objects.exclude(id__in=roles).filter(is_visible=True)
+        context['roles'] = roles
+        context['not_selected'] = not_selected
         self.set_user_form()
         context['user_form'] = self.user_form
         return context

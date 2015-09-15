@@ -56,7 +56,9 @@
   {
     "fields": {
       "city": "Fairfield",
-      "roles": [],
+      "roles": [
+        1
+      ],
       "is_deleted": false,
       "updated_by": null,
       "zip": 525572,
@@ -102,7 +104,9 @@
   {
     "fields": {
       "city": "Fairfield",
-      "roles": [],
+      "roles": [
+        1
+      ],
       "is_deleted": false,
       "updated_by": null,
       "zip": 52557,
@@ -124,7 +128,8 @@
   {
     "fields": {
       "icon_class": " fa-user",
-      "name": "HRAdmin"
+      "name": "HRAdmin",
+      "code": "hradmin"
     },
     "model": "hris.role",
     "pk": 1
@@ -132,7 +137,8 @@
   {
     "fields": {
       "icon_class": "fa-user-secret",
-      "name": "Product Owner"
+      "name": "Product Owner",
+      "code": "product owner"
     },
     "model": "hris.role",
     "pk": 2
@@ -140,7 +146,8 @@
   {
     "fields": {
       "icon_class": "fa-odnoklassniki",
-      "name": "Scrum Master"
+      "name": "Scrum Master",
+      "code": "scrum master"
     },
     "model": "hris.role",
     "pk": 3
@@ -148,7 +155,8 @@
   {
     "fields": {
       "icon_class": "fa-code",
-      "name": "Developer"
+      "name": "Developer",
+      "code": "developer"
     },
     "model": "hris.role",
     "pk": 4
@@ -156,7 +164,8 @@
   {
     "fields": {
       "icon_class": "fa-bug",
-      "name": "Tester"
+      "name": "Tester",
+      "code": "tester"
     },
     "model": "hris.role",
     "pk": 5

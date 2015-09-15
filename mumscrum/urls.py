@@ -25,6 +25,15 @@ from django.contrib.auth.views import (
     password_reset_confirm,
     password_reset_complete
 )
+from mumscrum.views.page_not_found_view import page_not_found_view
+from mumscrum.views.bad_request_view import bad_request_view
+from mumscrum.views.permission_denied_view import permission_denied_view
+from mumscrum.views.server_error_view import server_error_view
+
+handler400 = bad_request_view
+handler404 = page_not_found_view
+handler403 = permission_denied_view
+handler500 = server_error_view
 
 urlpatterns = [
     url(
@@ -66,6 +75,7 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),    
     url(r'^hris/', include("hris.urls")),
+    url(r'^$', 'hris.views.home', name='home'),
     # serving media files
 ]
 

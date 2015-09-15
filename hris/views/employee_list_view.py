@@ -3,6 +3,5 @@ from hris.models import Employee
 
 class EmployeeListView(ListView):
     model = Employee
-    template_name = 'employee/employee_list.html'
-    queryset = Employee.objects.all()
+    queryset = Employee.objects.filter(is_deleted=False)
     paginate_by = 10

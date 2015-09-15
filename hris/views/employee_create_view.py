@@ -7,12 +7,17 @@ from hris.models import Role
 from django.http.response import HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib import messages
+from django.utils.decorators import method_decorator
+from hris.decorators import employee_role_required
 
 class EmployeeCreateView(CreateView):
     model = Employee
     form_class = EmployeeForm
-    template_name = 'employee/employee_form.html'    
     user_form = UserForm
+
+    @method_decorator(employee_role_required(""))
+    def dispatch(self, *args, **kwargs):
+        return super(EmployeeCreateView, self).dispatch(*args, **kwargs)
 
     def post(self, *args, **kwargs):
         return super(EmployeeCreateView, self).post(*args, **kwargs)
@@ -33,9 +38,9 @@ class EmployeeCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(EmployeeCreateView, self).get_context_data(**kwargs)
-        roles = Role.objects.all()
-        context['user_form'] = self.user_form
+        roles = Role.objects.filter(is_visible=True)
         context['roles'] = roles
+        context['user_form'] = self.user_form
         return context
 
     def set_user_form(self, form=None):

@@ -9,7 +9,7 @@ class ProductBacklog(models.Model):
     owner = models.ForeignKey(
         Employee, null=True,
         blank=True, related_name="productbacklog_owned_by"
-)
+    )
     
     # object CRUD related infomation
     created_on = models.DateTimeField(auto_now=False, auto_now_add=True)

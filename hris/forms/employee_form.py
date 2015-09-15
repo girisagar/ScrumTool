@@ -5,7 +5,7 @@ from hris.models import Role
 class EmployeeForm(forms.ModelForm):
     roles = forms.ModelMultipleChoiceField(
         label="User Roles",
-        queryset=Role.objects.all(),
+        queryset=Role.objects.filter(is_visible=True),
         required=False,
         widget=forms.CheckboxSelectMultiple()
     )
@@ -19,7 +19,7 @@ class EmployeeForm(forms.ModelForm):
     class Meta:
         model = Employee
         exclude = ('user',)
-        fields = ('phone', 'street', 'city', 'state', 'zip', 'image', 'emp_id',)
+        fields = ('phone', 'street', 'city', 'state', 'zip', 'image', 'emp_id', 'roles')
 
     def save(self):
         return super(EmployeeForm, self).save()

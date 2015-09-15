@@ -1,4 +1,4 @@
-
+/*
 .input-lg{
     height: 56px;
     padding: 10px 16px;
@@ -43,6 +43,7 @@
 }
 
 /*           Labels & Progress-bar              */
+/*
 .label{
     padding: 0.2em 0.6em 0.2em;
     border: 1px solid #999999;
@@ -104,7 +105,7 @@
 .progress-thin{
     height: 2px;
 }
-
+*/
 /*            Navigation menu                */
 .nav-pills > li + li {
     margin-left: 0;
@@ -200,7 +201,7 @@
     border: 0 none;
     
 }
-
+/*
 .tooltip {
     font-size: 14px;
     font-weight: bold;
@@ -349,7 +350,7 @@
     text-align: center;
     vertical-align: baseline;
     white-space: nowrap;
-}
+}*/
 
 
 /*      Here the code for the wizard           */
@@ -546,7 +547,7 @@ label{
 
 /*          For demo purpose         */
 
-
+/*
 
 .fixed-plugin{
     position: fixed;
@@ -633,7 +634,7 @@ label{
 .fixed-plugin .badge-red{
     background-color: #FF3B30;
 }
-
+*/
 @media (max-width:768px){
     .fixed-plugin{
         top: 80px;
@@ -644,7 +645,7 @@ label{
     }
 
 }
-
+/*
 .footer{
     position: relative;
     bottom: 20px;
@@ -746,4 +747,4 @@ label{
         min-width: 140px;
     }
 }
-
+*/

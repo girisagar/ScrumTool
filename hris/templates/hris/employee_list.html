@@ -2,6 +2,7 @@
 {% block title %}{% endblock %}
 {% block head %}{% endblock %}
 <!-- This is page header and bredcrumb -->
+{% load employee_tags %}
 
 {% block active_employees %}active{% endblock %}
 
@@ -28,6 +29,8 @@
         <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
       </div>
     </div><!-- /.box-header -->
+
+    {% ifrole HRADMIN %}
     <div class="box-header with-border">
       <h3 class="box-title"> </h3>
       <div class="box-tools pull-right">
@@ -36,6 +39,8 @@
           </a>
       </div>
     </div><!-- /.box-header -->
+    {% endifrole %}
+
     <div class="box-body">
       <ul class="products-list product-list-in-box">
         {% for employee in employee_list %}
