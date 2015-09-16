@@ -15,7 +15,7 @@ class EmployeeCreateView(CreateView):
     form_class = EmployeeForm
     user_form = UserForm
 
-    @method_decorator(employee_role_required(""))
+    @method_decorator(employee_role_required("hradmin"))
     def dispatch(self, *args, **kwargs):
         return super(EmployeeCreateView, self).dispatch(*args, **kwargs)
 

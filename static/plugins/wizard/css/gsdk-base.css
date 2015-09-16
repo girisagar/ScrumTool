@@ -503,6 +503,12 @@ label{
    transition: all 0.2s;
    -webkit-transition: all 0.2s;
 }
+
+.wizard-card .choice .active .icon{
+   background-color: #000;
+   color: #000;
+}
+
 .wizard-card .choice i{
     font-size: 60px;
     line-height: 111px;

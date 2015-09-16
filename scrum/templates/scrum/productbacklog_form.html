@@ -1,0 +1,50 @@
+{% extends "base.html"%}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+<!-- This is page header and bredcrumb -->
+{% block content_header %}
+    <section class="content-header">
+      <h1>
+        SCRUM
+        <small>Control panel</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{% url 'scrum_home' %}"><i class="fa fa-dashboard"></i> SCRUM</a></li>
+        <li class="active">Product Backlog</li>
+      </ol>
+    </section>
+{% endblock %}
+<!-- Add your content here -->
+{% block content %}
+<div class="widget-box">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Horizontal Form</h3>
+    </div><!-- /.box-header -->
+    <!-- form start -->
+    <form class="form-horizontal">
+      <div class="box-body">
+        {% csrf_token %}
+        {% load bootstrap3 %}
+        {% bootstrap_form form %}
+      </div><!-- /.box-body -->
+      <div class="box-footer">
+        <button type="submit" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-info pull-right">Sign in</button>
+      </div><!-- /.box-footer -->
+    </form>
+  </div>
+  <form action="" method="post" class="form">
+    {% csrf_token %}
+    {% load bootstrap3 %}
+    {% bootstrap_form form %}
+     <div class="row">
+      <div class="col-xs-4">
+        <button type="submit" class="btn btn-primary btn-block btn-flat" value="submit">Submit</button>
+      </div><!-- /.col -->
+    </div>
+  </form>
+</div>
+{% endblock %} 
+<!-- Add your javascript plugin src or code content here -->
+{% block footer_js %}{% endblock %}

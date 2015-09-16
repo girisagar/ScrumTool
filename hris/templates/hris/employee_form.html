@@ -8,12 +8,15 @@
 {% block content_header %}
     <section class="content-header">
       <h1>
-        Dashboard
-        <small>Control panel</small>
+        HRIS
+        <small>Employee</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{% url 'hris_home' %}"><i class="fa fa-dashboard"></i> HRIS</a></li>
         <li><a href="{% url 'hris_employee_list' %}">Employees</a></li>
+        {% if object %}
+        <li><a href="{% url 'hris_employee_detail' object.id %}">{{object.user.get_full_name}}</a></li>
+        {% endif %}
         <li class="active">
           {% if object %}Update{% else %}Add{% endif %}
         </li>
@@ -23,15 +26,13 @@
 <!-- Add your content here -->
 {% block content %}
     <div class="row">
-    <div class="col-sm-12">
-       
+    <div class="col-sm-12">       
         <!--      Wizard container        -->   
-        <div class="wizard-container"> 
-            <form action="" method="POST" role="form" class="form" enctype="multipart/form-data">
+        <div class="wizard-container box box-info"> 
+            <form action="" method="POST" role="form" class="form-horizontal" enctype="multipart/form-data">
             {% load bootstrap3 %}
             {% csrf_token %}
-            <div class="card wizard-card ct-wizard-orange" id="wizard">
-            
+            <div class="card wizard-card ct-wizard-green" id="wizard">            
             <!--        You can switch "ct-wizard-orange"  with one of the next bright colors: "ct-wizard-blue", "ct-wizard-green", "ct-wizard-orange", "ct-wizard-red"             -->
             
                   <div class="box-header">
@@ -127,12 +128,10 @@
                         </div>
                     </div>
 
-                    <div class="wizard-footer">
+                    <div class="wizard-footer box-footer">
                             <div class="pull-right">
-                                <input type='button' class='btn btn-next btn-fill btn-warning' name='next' value='Next' />
-                                {% buttons %}
-                                    <button type="submit" class="btn btn-finish btn-fill btn-warning" value="save">Finish</button>
-                                {% endbuttons %}
+                                <input type='button' class='btn btn-next btn-fill btn-primary' name='next' value='Next' />
+                                <button type="submit" class="btn btn-finish btn-fill btn-primary" value="save">Finish</button>
 
                                 <!-- <input type='button' class='btn btn-finish btn-fill btn-warning' name='finish' value='Finish' type="submit" /> -->
     

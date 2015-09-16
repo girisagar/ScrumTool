@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse_lazy
 from hris.models import Employee
 from django.shortcuts import redirect
 from django.utils import timezone
+from django.contrib import messages
 
 class EmployeeDeleteView(DeleteView):
     model = Employee
@@ -17,4 +18,5 @@ class EmployeeDeleteView(DeleteView):
         emp_object.save()
         emp_object.user.is_active = False
         emp_object.user.save()
+        messages.add_message(self.request, messages.SUCCESS, 'New employee successfully added')        
         return redirect(self.success_url)

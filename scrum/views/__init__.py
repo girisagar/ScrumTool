@@ -1,0 +1,6 @@
+from scrum.views.product_backlog_create_view import ProductBacklogCreateView 
+from scrum.views.product_backlog_update_view import ProductBacklogUpdateView
+from scrum.views.product_backlog_delete_view import ProductBacklogDeleteView
+from scrum.views.product_backlog_detail_view import ProductBacklogDetailView
+from scrum.views.product_backlog_list_view import ProductBacklogListView
+from scrum.views.home import home

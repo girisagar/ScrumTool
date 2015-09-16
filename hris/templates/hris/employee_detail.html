@@ -1,0 +1,97 @@
+{% extends "base.html"%}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+{% load employee_tags %}
+<!-- This is page header and bredcrumb -->
+{% block content_header %}
+    <section class="content-header">
+      <h1>
+        HRIS
+        <small>Employee</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{% url 'hris_home' %}"><i class="fa fa-dashboard"></i>HRIS</a></li>
+        <li><a href="{% url 'hris_employee_list' %}">Employees</a></li>
+        <li class="active">{{object.user.get_full_name}}</li>
+      </ol>
+    </section>
+{% endblock %}
+<!-- Add your content here -->
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <!-- Profile Image -->
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Detail Information <small>{{object.user.get_full_name}}</small></h3>
+        <div class="box-tools pull-right">
+          <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div><!-- /.box-header -->
+      <div class="box-body box-profile">
+        <div class="row">
+          <div class="col-md-offset-1 col-md-10">          
+            <img class="profile-user-img img-responsive img-circle" src="{{object.image.url}}" alt="User profile picture">
+          </div>
+          <div class="col-md-1">
+            <div class="row">
+              <div class="col-md-12">                            
+                <a class="pull-left" href="{% url 'hris_employee_update' object.id %}">
+                  <i class="fa fa-pencil" style="font-size: 20px; color: #33CC33;" title="Edit {{object.user.get_full_name}}"  data-toggle="tooltip"></i>
+                </a>
+                <a class="pull-right" href="{% url 'hris_employee_delete' object.id %}">
+                  <i class="fa fa-trash" style="font-size: 20px; color: #FF6633;" title="Delete {{object.user.get_full_name}}" data-toggle="tooltip"></i>
+                </a>                            
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-offset-1 col-md-10">
+              <h3 class="profile-username text-center">{{object.user.get_full_name}}</h3>
+              <div class="box-body">
+                <ul class="products-list product-list-in-box">
+                    <li class="item">
+                      <div class="product-info">
+                        <span class="product-description">
+                          <div class="col-md-10">
+                            <h3><small><b>EMP ID:&nbsp;</b>{{object.emp_id}}</small></h3>
+                            <h3><small><b>Joined:&nbsp;</b>{{object.user.date_joined | date}}</small></h3>
+                            <h3><a href="mailto:{{object.user.email}}" target="_top"><small><b>Email:&nbsp;</b>{{object.user.email}}</small></a></h3>
+                            <h3><small><b>Phone:&nbsp;</b>{{object.phone}}</small></h3>
+                            <h3><small><b>Street:&nbsp;</b>{{object.street}}</small></h3>
+                            <h3><small><b>City:&nbsp;</b>{{object.city}}</small></h3>
+                            <h3><small><b>State:&nbsp;</b>{{object.state}}</small></h3>
+                            <h3><small><b>Zip:&nbsp;</b>{{object.zip}}</small></h3>
+                            <h3>
+                                <small><b>Roles:&nbsp;</b></small>
+                                {% for role in object.roles.all %}
+                                  <small>
+                                    <label class="label label-success">
+                                      <i class="fa {{role.icon_class}}"></i>
+                                      {{role.name}}
+                                    </label>&nbsp;&nbsp;
+                                  </small>
+                                {% endfor %}
+                            </h3>
+                          </div>
+                        </span>
+                      </div>
+                    </li>
+                </ul>
+              </div><!-- /.box-body -->
+          </div>
+        </div>
+
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+
+    <!-- About Me Box -->
+    <!-- /.box -->
+  </div><!-- /.col -->
+  <!-- /.col -->
+</div>
+{% endblock %} 
+<!-- Add your javascript plugin src or code content here -->
+{% block footer_js %}{% endblock %}

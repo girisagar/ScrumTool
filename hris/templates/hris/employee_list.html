@@ -9,8 +9,8 @@
 {% block content_header %}
     <section class="content-header">
       <h1>
-        Dashboard
-        <small>Control panel</small>
+        HRIS
+        <small>Employee</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{% url 'hris_home' %}"><i class="fa fa-dashboard"></i> HRIS</a></li>
@@ -33,9 +33,9 @@
     {% ifrole HRADMIN %}
     <div class="box-header with-border">
       <h3 class="box-title"> </h3>
-      <div class="box-tools pull-right">
+      <div class="box-tools pull-right" title="Add New Employee" data-toggle="tooltip" >
           <a  href="{% url 'hris_employee_create' %}">
-            <i title="Add New Employee" class="fa  fa-plus-circle" style="font-size: 40px; color: #3C8DBC;"></i>
+            <i class="fa  fa-plus-circle" style="font-size: 40px; color: #3C8DBC;"></i>
           </a>
       </div>
     </div><!-- /.box-header -->
@@ -50,16 +50,23 @@
               {% profile_image employee %}            
             </div>
             <div class="product-info">
-              <a href="javascript::;" class="product-title">
+              <a href="{% url 'hris_employee_detail' employee.id %}" class="product-title" data-toggle="tooltip" title="See more about {{employee.user.get_full_name}}">
                 {{employee.user.get_full_name}}
-                <a class="pull-right" href="{% url 'hris_employee_update' employee.id %}">
-                  <i class="fa fa-edit" style="font-size: 20px; color: #00A65A;"></i>
-                </a>
+                {% ifrole HRADMIN %}
+                <div class="col-md-1 pull-right">                  
+                  <a class="pull-left" href="{% url 'hris_employee_update' employee.id %}">
+                    <i class="fa fa-pencil" style="font-size: 20px; color: #33CC33;" title="Edit {{employee.user.get_full_name}}"  data-toggle="tooltip"></i>
+                  </a>
+                  <a class="pull-right" href="{% url 'hris_employee_delete' employee.id %}">
+                    <i class="fa fa-trash" style="font-size: 20px; color: #FF6633;" title="Delete {{employee.user.get_full_name}}" data-toggle="tooltip"></i>
+                  </a>
+                </div>
+                {% endifrole %}
               </a>
               <span class="product-description">
-                <span><small><b>EMP ID:&nbsp;</b>{{employee.emp_id}}</small></span></br>
-                <span><small><b>Joined:&nbsp;</b>{{employee.user.date_joined | date}}</small></span><br>
-                <a href="mailto:{{employee.user.email}}" target="_top">{{employee.user.email}}</a><br>
+                <span><small><b>EMP ID:&nbsp;</b>{{employee.emp_id}}</small></span><br/>
+                <span><small><b>Joined:&nbsp;</b>{{employee.user.date_joined | date}}</small></span><br/>
+                <a href="mailto:{{employee.user.email}}" target="_top">{{employee.user.email}}</a><br/>
                 {{employee.address}}<br>
                 {% for role in employee.roles.all %}
                   <span class="label label-success">
