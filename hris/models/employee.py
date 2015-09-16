@@ -50,5 +50,9 @@ class Employee(models.Model):
     def address(self):
         return "{0}\n{1}, {2}, {3}".format(self.street, self.city, self.state, self.zip)
 
+    @property
+    def name(self):
+        return self.user.get_full_name()
+
     class Meta:
         app_label = "hris"

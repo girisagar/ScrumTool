@@ -19,8 +19,8 @@
   },
   {
     "fields": {
-      "username": "aadarsh.bhattarai",
-      "first_name": "Aadarsh",
+      "username": "adarsh.bhattarai",
+      "first_name": "Adarsh",
       "last_name": "Bhattarai",
       "is_active": true,
       "is_superuser": false,
@@ -28,7 +28,7 @@
       "last_login": null,
       "groups": [],
       "user_permissions": [],
-      "password": "Bhattarai",
+      "password": "pbkdf2_sha256$20000$uWPr1YAGQpPG$lcZfLpfRNicg0C5lJH+Fl18GYv8i4UKz4zXJ5p62o6E=",
       "email": "sagar.giri1@gmail.com",
       "date_joined": "2015-09-10T21:39:23Z"
     },
@@ -40,13 +40,13 @@
       "username": "bibek.chitrakar",
       "first_name": "Bibek",
       "last_name": "Chitrakar",
-      "is_active": true,
+      "is_active": false,
       "is_superuser": false,
       "is_staff": false,
       "last_login": null,
       "groups": [],
       "user_permissions": [],
-      "password": "ram",
+      "password": "pbkdf2_sha256$20000$qlLAVtcjtECD$pz+/9vv3fZjyCihz5bwp+U4tu6XF+GRVOEi53x6fvts=",
       "email": "bibek.chitrakar@gmail.com",
       "date_joined": "2015-09-12T06:46:06.612Z"
     },
@@ -57,7 +57,8 @@
     "fields": {
       "city": "Fairfield",
       "roles": [
-        1
+        1,
+        2
       ],
       "is_deleted": false,
       "updated_by": null,
@@ -138,7 +139,7 @@
     "fields": {
       "icon_class": "fa-user-secret",
       "name": "Product Owner",
-      "code": "product owner"
+      "code": "product_owner"
     },
     "model": "hris.role",
     "pk": 2
@@ -147,7 +148,7 @@
     "fields": {
       "icon_class": "fa-odnoklassniki",
       "name": "Scrum Master",
-      "code": "scrum master"
+      "code": "scrum_master"
     },
     "model": "hris.role",
     "pk": 3

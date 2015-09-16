@@ -8,4 +8,4 @@ class ProductBacklogDetailView(DetailView):
 
     @method_decorator(employee_role_required("product_owner"))
     def dispatch(self, *args, **kwargs):
-        return super(ProdcuctBacklogDetailView, self).dispatch(*args, **kwargs)
+        return super(ProductBacklogDetailView, self).dispatch(*args, **kwargs)

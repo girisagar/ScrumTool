@@ -7,7 +7,6 @@ from scrum.views import ProductBacklogDeleteView
 from scrum.views import home as scrum_home
 
 urlpatterns = [
-
     url(
         r'product-backlog/update/(?P<pk>\d+)/$',
         ProductBacklogUpdateView.as_view(),
@@ -32,6 +31,7 @@ urlpatterns = [
         ProductBacklogListView.as_view(),
         name = "scrum_product_backlog_list"
     ),
+    # add urls here
     url(
         r'$',
         scrum_home,
