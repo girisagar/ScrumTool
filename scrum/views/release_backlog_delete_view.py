@@ -7,7 +7,7 @@ from django.utils.decorators import method_decorator
 from hris.decorators import employee_role_required
 
 class ReleaseBacklogDeleteView(DeleteView):
-    model = ProductBacklog
+    model = ReleaseBacklog
     success_url = reverse_lazy('hris_releasebacklog_list')
 
     # @method_decorator(employee_role_required("product_owner"))
