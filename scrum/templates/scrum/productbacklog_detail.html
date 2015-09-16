@@ -15,7 +15,7 @@
       <ol class="breadcrumb">
         <li><a href="{% url 'scrum_home' %}"><i class="fa fa-dashboard"></i> SCRUM</a></li>
         <li><a href="{% url 'scrum_product_backlog_list' %}"> Product Backlogs</a></li>
-        <li><a href="{% url 'scrum_product_backlog_detail' object.id %}"><i class="fa fa-dashboard"></i> {{object.name}}</a></li>
+        <li><a href="{% url 'scrum_product_backlog_detail' object.id %}"> {{object.name}}</a></li>
         <li class="active">Deatil</li>
       </ol>
     </section>
@@ -39,10 +39,10 @@
           <div class="col-md-offset-11 col-md-1">
             <div class="row">
               <div class="col-md-12">                            
-                <a class="pull-left" href="{% url 'hris_employee_update' object.id %}">
+                <a class="pull-left" href="{% url 'scrum_product_backlog_update' object.id %}">
                   <i class="fa fa-pencil" style="font-size: 20px; color: #33CC33;" title="Edit {{object.user.get_full_name}}"  data-toggle="tooltip"></i>
                 </a>
-                <a class="pull-right" href="{% url 'hris_employee_delete' object.id %}">
+                <a class="pull-right" href="{% url 'scrum_product_backlog_delete' object.id %}">
                   <i class="fa fa-trash" style="font-size: 20px; color: #FF6633;" title="Delete {{object.user.get_full_name}}" data-toggle="tooltip"></i>
                 </a>                            
               </div>

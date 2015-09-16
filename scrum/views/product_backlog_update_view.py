@@ -7,8 +7,12 @@ from hris.decorators import employee_role_required
 
 class ProductBacklogUpdateView(UpdateView):
     model = ProductBacklog
-    success_url = reverse_lazy('hris_productbacklog_list')
+    fields = ('name', )
 
     @method_decorator(employee_role_required("product_owner"))
     def dispatch(self, *args, **kwargs):
         return super(ProductBacklogUpdateView, self).dispatch(*args, **kwargs)
+
+    def get_success_url(self, *args, **kwargs):
+        messages.add_message(self.request, messages.SUCCESS, 'One Prodcuct Backlog successfully updated')        
+        return reverse_lazy('scrum_product_backlog_list')
