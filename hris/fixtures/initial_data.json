@@ -40,7 +40,7 @@
       "username": "bibek.chitrakar",
       "first_name": "Bibek",
       "last_name": "Chitrakar",
-      "is_active": false,
+      "is_active": true,
       "is_superuser": false,
       "is_staff": false,
       "last_login": null,
