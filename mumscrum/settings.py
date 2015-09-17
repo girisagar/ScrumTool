@@ -25,9 +25,6 @@ SECRET_KEY = 'r7plzw&7(5k-hluhdc3z!7il9d437-am1*5siegi2^c_9#m$3('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
-
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -41,6 +38,7 @@ INSTALLED_APPS = (
     'hris',
     'bootstrap3',
     'scrum',
+    'pretty_times',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -139,3 +137,12 @@ template_loaders = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader'
 )
+
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']

@@ -30,18 +30,17 @@
       </div>
     </div><!-- /.box-header -->
 
-    {% ifrole HRADMIN %}
-    <div class="box-header with-border">
-      <h3 class="box-title"> </h3>
-      <div class="box-tools pull-right" title="Add New Employee" data-toggle="tooltip" >
-          <a  href="{% url 'hris_employee_create' %}">
-            <i class="fa  fa-plus-circle" style="font-size: 40px; color: #3C8DBC;"></i>
-          </a>
-      </div>
-    </div><!-- /.box-header -->
-    {% endifrole %}
 
     <div class="box-body">
+      {% ifrole HRADMIN %}
+      <div class="add-button row">
+        <div class="col-md-12 " style="border-bottom: 1px solid #f4f4f4;">
+            <a  href="{% url 'hris_employee_create' %}" class="pull-right" title="Add New Employee" data-toggle="tooltip">
+              <i class="fa fa-plus-circle" style="font-size: 30px; color: #3C8DBC;"></i>
+            </a>
+        </div>
+      </div>
+      {% endifrole %}
       <ul class="products-list product-list-in-box">
         {% for employee in employee_list %}
           <li class="item">
@@ -96,5 +95,16 @@
 {% endblock %} 
 <!-- Add your javascript plugin src or code content here -->
 {% block footer_js %}
-
+<script type="text/javascript">
+ $(document).ready(function() {
+      $('form').find('input').each(function(){
+        if(!$(this).prop('required')){
+            console.log("NR");
+        } else {
+            console.log("IR");
+        }
+      });
+    });
+ 
+</script>
 {% endblock %}

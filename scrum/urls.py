@@ -64,6 +64,11 @@ urlpatterns = [
         name = "scrum_release_backlog_list"
     ),
     url(
+        r'product-backlog/$',
+        ReleaseBacklogListView.as_view(),
+        name = "scrum_release_backlog_list"
+    ),
+    url(
         r'$',
         scrum_home,
         name = "scrum_home"

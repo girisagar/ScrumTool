@@ -1,0 +1,30 @@
+<div class="box box-solid ">
+  <div class="box-header header-shadow">
+    <h3 class="box-title">Sprints</h3>
+    <div class="box-tools">
+      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+    </div>
+  </div><!-- /.box-header -->
+  <div class="box-body body-shadow">
+    <div class="panel-group" id="accordion-2">
+      {% for sprint in "123" %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion-2" href="#sprint{{forloop.counter0}}">Sprint-1 Group Item #1</a>
+            </h4>
+          </div>
+          <div id="sprint{{forloop.counter0}}" class="panel-collapse collapse">
+            <div class="panel-body">
+              data
+            </div>
+          </div>
+        </div>
+      {% endfor %}            
+    </div>
+    <div class="mailbox-controls">
+        <!-- Check all button -->
+        <a class="btn btn-default" href="#">Add Sprint</a>
+    </div><!-- /.pull-right -->
+  </div><!-- /.box-body -->
+</div><!-- /. box -->
