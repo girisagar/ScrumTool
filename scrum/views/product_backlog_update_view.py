@@ -13,6 +13,17 @@ class ProductBacklogUpdateView(UpdateView):
     def dispatch(self, *args, **kwargs):
         return super(ProductBacklogUpdateView, self).dispatch(*args, **kwargs)
 
+    def form_valid(self, form):
+        form.instance.updated_by = self.request.user.employee
+        return super(ProductBacklogUpdateView, self).form_valid(form)
+
+
     def get_success_url(self, *args, **kwargs):
-        messages.add_message(self.request, messages.SUCCESS, 'One Prodcuct Backlog successfully updated')        
+        messages.add_message(self.request, messages.SUCCESS, \
+            'One Prodcuct Backlog successfully updated')        
         return reverse_lazy('scrum_product_backlog_list')
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.SUCCESS, \
+            'New Release Backlog Successfully Added')
+        return reverse_lazy('scrum_product_backlog_detail', args = [self.get])

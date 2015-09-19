@@ -1,6 +1,8 @@
 {% extends "base.html"%}
 {% block title %}{% endblock %}
 {% load staticfiles %}
+{% load employee_tags %}
+
 {% block head %}
     <link rel="stylesheet" href="{% static 'dist/css/skins/_all-skins.min.css' %}">
     <!-- iCheck -->
@@ -10,12 +12,16 @@
 {% block content_header %}
     <section class="content-header">
       <h1>
-        Dashboard
-        <small>Control panel</small>
+        SCRUM
+        <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{% url 'hris_home' %}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li><a href="{% url 'scrum_home' %}"><i class="fa fa-dashboard"></i> SCRUM</a></li>
+        <li><a href="{% url 'scrum_product_backlog_list' %}"> Product Backlogs</a></li>
+        {% if object %}
+        <li><a href="{% url 'scrum_product_backlog' object.id %}">{{object.name}}</a></li>
+        {% endif %}
+        <li class="active">Detail</li>
       </ol>
     </section>
 {% endblock %}
@@ -25,16 +31,19 @@
   <div class="row">
     <div class="col-md-7">
       <h3>{{object.name}}
-        <a href="#" title="add-release" data-toggle="tooltip" class="pull-right"><i class="fa  fa-plus-circle" style="font-size: 30px; color: #3C8DBC;"></i></a>
+
+    {% ifrole PRODUCT_OWNER SCRUM_MASTER %}
+        <a href="{% url 'scrum_release_backlog_create' object.id %}" title="add-release" data-toggle="tooltip" class="pull-right"><i class="fa  fa-plus-circle icon-add"></i></a>
+    {% endifrole %}
       </h3>
     </div>
   </div>
   <div class="row">
     <div class="col-md-7" id="release-accordion"> 
-        {% include "scrum/release_backlog_list.html" %}
+        {% include "scrum/releasebacklog_list.html" %}
     </div>
     <div class="col-md-5">
-      {% include "scrum/product_backlog_stories.html" %}
+      {% include "scrum/productbacklog_stories.html" %}
     </div><!-- /.col -->
   </div><!-- /.row -->
 {% endblock %} 
@@ -45,6 +54,8 @@
     $(function () {
         //Enable iCheck plugin for checkboxes
         //iCheck for checkbox and radio inputs
+
+
         $('.mailbox-messages input[type="checkbox"]').iCheck({
           checkboxClass: 'icheckbox_flat-blue',
           radioClass: 'iradio_flat-blue'
@@ -52,6 +63,7 @@
 
         //Enable check and uncheck all functionality
         $(".checkbox-toggle").click(function () {
+          console.log("hello");
           var clicks = $(this).data('clicks');
           if (clicks) {
             //Uncheck all checkboxes
@@ -87,7 +99,4 @@
       });
 </script>
 
-<style type="text/css">
-
-</style>
 {% endblock %}

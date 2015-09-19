@@ -16,6 +16,8 @@ class EmployeeUpdateView(UpdateView):
         user_form = self.user_form(self.request.POST, self.request.FILES, instance=self.get_object().user)
         if user_form.is_valid():
             user = user_form.instance.save()
+            form.instance.created_by = self.request.user.employee
+            form.instance.updated_by = self.request.user.employee
             employee = form.save()
         else:
             messages.add_message(self.request, messages.ERROR, 'Oops!! something went wrong')

@@ -8,6 +8,6 @@ class ProductBacklogListView(ListView):
     queryset = ProductBacklog.objects.filter(is_deleted=False)
     paginate_by = 10
 
-    # @method_decorator(employee_role_required("product_owner"))
+    @method_decorator(employee_role_required("product_owner"))
     def dispatch(self, *args, **kwargs):
         return super(ProductBacklogListView, self).dispatch(*args, **kwargs)

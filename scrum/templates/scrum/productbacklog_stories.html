@@ -1,0 +1,57 @@
+{% load employee_tags %}
+{% load prettytimes_tags %}
+<div class="box box-warning">
+  <div class="box-header with-border">
+    <h3 class="box-title">{{object.name}}:&nbsp;Stories</h3>
+    <div class="box-tools pull-right">
+      {% ifrole PRODUCT_OWNER %}
+        <div class="has-feedback">
+          <a href="{% url 'scrum_user_story_create' object.id %}" title="Add New Story" data-toggle="tooltip"><i class="fa  fa-plus-circle icon-add"></i></a>
+        </div>
+      {% endifrole %}
+    </div><!-- /.box-tools -->
+  </div><!-- /.box-header -->
+<form action="{% url 'scrum_user_story_to_release' object.id %}" method="POST">
+   {% csrf_token %}
+  <div class="box-body no-padding">
+    <div class="mailbox-controls">
+      <!-- Check all button -->
+      <span class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></span>
+      <div class="btn-group">
+        <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+        <select class="btn btn-default btn-sm" name="release_backlog" onchange="this.form.submit()">
+          <option value="-1">---- select release ---</option>
+          {% for release in release_list %}
+            <option value="{{release.id}}">{{release.name}}</option>
+          {% endfor %}
+        </select>
+      </div><!-- /.btn-group -->
+    <div class="table-responsive mailbox-messages">
+      <table class="table table-hover table-striped">
+        <tbody>
+          {% for story in user_stories %}
+          <tr>
+            <td><input name="user_story" value="{{story.id}}" type="checkbox"></td>
+            <td class="mailbox-subject"><a href="{% url 'scrum_user_story_detail' story.product_backlog.id story.id %}"><b>{{story.title}}</b></a> - {{story.description|truncatechars:30}}<br/>{{story.created_on | relative_time }}, by <a href="{% url 'hris_employee_detail' story.created_by.id %}">{{story.created_by.name}}</a></td>
+            <td class="mailbox-attachment">
+
+          {% ifrole PRODUCT_OWNER %}
+              <a href="{% url 'scrum_user_story_update' story.product_backlog.id story.id %}"><i class="fa fa-pencil icon-edit-small" title="Edit" data-toggle="tooltip"></i></a>
+              <a href="{% url 'scrum_user_story_delete' story.product_backlog.id story.id %}"><i class="fa fa-trash icon-delete-small" title="Delete" data-toggle="tooltip"></i></a>
+          {% endifrole %}
+            </td>
+          </tr>
+          {% empty %}
+            <tr>
+              <td>
+                No user stories available, Click add button above to add
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table><!-- /.table -->
+    </div><!-- /.mail-box-messages -->
+  </div><!-- /.box-body -->
+  </div>
+</form>
+</div><!-- /. box -->

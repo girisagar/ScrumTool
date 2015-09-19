@@ -75,7 +75,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),    
     url(r'^hris/', include("hris.urls")),
     url(r'^scrum/', include("scrum.urls")),
-    url(r'^$', 'hris.views.home', name='home'),
+    url(r'^$', 'mumscrum.views.home', name='home'),
     # serving media files
 ]
 

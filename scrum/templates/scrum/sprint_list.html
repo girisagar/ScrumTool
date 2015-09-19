@@ -1,20 +1,29 @@
+{% load employee_tags %}
 <div class="box box-solid ">
   <div class="box-header header-shadow">
-    <h3 class="box-title">Sprints</h3>
+    <h3 class="box-title">Sprints&nbsp;&nbsp;
+      <a href="{% url 'scrum_sprint_create' release.id %}"><i class="fa fa-plus-circle icon-add-small"></i></a>&nbsp;&nbsp;
+    </h3>
     <div class="box-tools">
       <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
     </div>
   </div><!-- /.box-header -->
   <div class="box-body body-shadow">
     <div class="panel-group" id="accordion-2">
-      {% for sprint in "123" %}
+      {% for sprint in release.sprint_set.all %}
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion-2" href="#sprint{{forloop.counter0}}">Sprint-1 Group Item #1</a>
+              <a data-toggle="collapse" data-parent="#accordion-2" href="#sprint{{sprint.id}}"> {{sprint}}&nbsp;&nbsp;</a>
+                {% ifrole SCRUM_MASTER PRODUCT_OWNER %}
+                  <div class="controls pull-right" >                    
+                    <a href="{% url 'scrum_sprint_update' sprint.id %}"><i class="fa fa-pencil icon-edit-small" title="Edit" data-toggle="tooltip"></i></a>&nbsp;&nbsp;
+                    <a href="{% url 'scrum_sprint_delete' sprint.id %}"><i class="fa fa-trash icon-delete-small" title="Delete" data-toggle="tooltip"></i></a>
+                  </div>
+                {% endifrole %}
             </h4>
           </div>
-          <div id="sprint{{forloop.counter0}}" class="panel-collapse collapse">
+          <div id="sprint{{sprint.id}}" class="panel-collapse collapse">
             <div class="panel-body">
               data
             </div>
@@ -22,9 +31,5 @@
         </div>
       {% endfor %}            
     </div>
-    <div class="mailbox-controls">
-        <!-- Check all button -->
-        <a class="btn btn-default" href="#">Add Sprint</a>
-    </div><!-- /.pull-right -->
   </div><!-- /.box-body -->
 </div><!-- /. box -->

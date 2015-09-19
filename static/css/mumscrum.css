@@ -10,10 +10,40 @@
 }
 
 .header-shadow{
-	background-color: #D2D6DE;
-	background: #D2D6DE;
+	background-color: #F4F4F4;
+	background: #F4F4F4;
 }
 
 .body-shadow{
-	outline: 1px solid #D2D6DE;
+    border: 1px solid #F4F4F4;
+}
+
+.icon-add {
+    font-size: 30px;
+    color: #3C8DBC;
+}
+
+.icon-edit {
+    font-size: 20px;
+    color: #33CC33;
+}
+
+.icon-delete {
+    font-size: 20px;
+    color: #FF6633;
+}
+
+.icon-add-small {
+    font-size: 20px;
+    color: #3C8DBC;
+}
+
+.icon-edit-small {
+    font-size: 15px;
+    color: #33CC33;
+}
+
+.icon-delete-small {
+    font-size: 15px;
+    color: #FF6633;
 }

@@ -1,5 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.conf import settings
+from django.db import connection
+from time import time
+from operator import add
+import re
 from re import compile
 
 EXEMPT_URLS = [compile(settings.LOGIN_URL.lstrip('/'))]
@@ -28,12 +32,6 @@ class LoginRequiredMiddleware:
             path = request.path_info.lstrip('/')
             if not any(m.match(path) for m in EXEMPT_URLS):
                 return HttpResponseRedirect(settings.LOGIN_URL)
-
-# for time
-from django.db import connection
-from time import time
-from operator import add
-import re
 
 
 class StatsMiddleware(object):

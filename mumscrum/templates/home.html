@@ -1,0 +1,23 @@
+{% extends "base.html"%}
+{% block active_dashboard %}active{% endblock %}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+<!-- This is page header and bredcrumb -->
+{% block content_header %}
+    <section class="content-header">
+      <h1>
+        Dashboard
+        <small>Control panel</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+{% endblock %}
+<!-- Add your content here -->
+{% block content %}
+<h1>Welcome MumScrum</h1>
+{% endblock %} 
+<!-- Add your javascript plugin src or code content here -->
+{% block footer_js %}{% endblock %}

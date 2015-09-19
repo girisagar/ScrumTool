@@ -148,7 +148,8 @@
     "fields": {
       "icon_class": "fa-odnoklassniki",
       "name": "Scrum Master",
-      "code": "scrum_master"
+      "code": "scrum_master",
+      "is_visible": false
     },
     "model": "hris.role",
     "pk": 3

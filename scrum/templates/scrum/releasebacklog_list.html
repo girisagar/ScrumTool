@@ -1,0 +1,33 @@
+{% load employee_tags %}
+{% for release in release_list %}
+<div class="box box-primary {% if forloop.first %}{% else %}collapsed-box{% endif%}" >
+  <div class="box-header with-border">
+    <h3 class="box-title">{{release.name}}&nbsp;&nbsp;
+    {% ifrole PRODUCT_OWNER %}
+    <a href="{% url 'scrum_release_backlog_update' object.id release.id %}"><i class="fa fa-pencil icon-edit-small"></i></a>&nbsp;&nbsp;
+    <a href="{% url 'scrum_release_backlog_delete' object.id release.id %}"><i class="fa fa-trash icon-delete-small"></i></a>
+    {% endifrole %}
+    </h3>
+    <div class="box-tools">
+      <a class="btn btn-box-tool" data-widget="collapse" data-parent="#release-accordion" href="#release{{release.id}}"><i class="fa {% if forloop.first %}fa-minus{% else %}fa-plus{% endif%}"></i></a>
+    </div>
+  </div>
+  <div class="box-body"  style="padding: 10px;" id="release{{release.id}}">
+    <div class="row">
+      <div class="col-md-12">              
+        {% ifrole PRODUCT_OWNER SCRUM_MASTER %}
+          {% include "scrum/releasebacklog_stories.html" %}
+        {% endifrole %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        {% ifrole PRODUCT_OWNER SCRUM_MASTER %}
+          {% include "scrum/sprint_list.html" %}
+        {% endifrole %}
+      </div>  
+    </div>
+  </div><!-- /.box-body -->
+</div><!-- /. box -->
+
+{% endfor %}

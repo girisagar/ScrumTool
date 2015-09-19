@@ -9,3 +9,12 @@ from scrum.views.release_backlog_update_view import ReleaseBacklogUpdateView
 from scrum.views.release_backlog_delete_view import ReleaseBacklogDeleteView
 from scrum.views.release_backlog_detail_view import ReleaseBacklogDetailView
 from scrum.views.release_backlog_list_view import ReleaseBacklogListView
+from scrum.views.user_story_create_view import UserStoryCreateView
+from scrum.views.user_story_delete_view import UserStoryDeleteView
+from scrum.views.user_story_detail_view import UserStoryDetailView
+from scrum.views.user_story_update_view import UserStoryUpdateView
+from scrum.views.user_story_to_release_view import UserStoryToReleaseView
+from scrum.views.user_story_to_sprint_view import UserStoryToSprintView
+from scrum.views.sprint_create_view import SprintCreateView
+from scrum.views.sprint_update_view import SprintUpdateView
+from scrum.views.sprint_delete_view import SprintDeleteView

@@ -1,6 +1,9 @@
+{% load employee_tags %}
+{% load prettytimes_tags %}
+
 <div class="box box-solid">
   <div class="box-header header-shadow">
-    <h3 class="box-title">Backlog</h3>
+    <h3 class="box-title">Stories</h3>
     <div class="box-tools">
       <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
     </div>
@@ -21,14 +24,26 @@
     <div class="table-responsive mailbox-messages">
       <table class="table table-hover table-striped">
         <tbody>
-          {% for number in "100" %}
+          {% for story in release.userstory_set.all %}
           <tr>
-            <td><input type="checkbox"></td>
-            <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...<br/>5 mins ago, by <a href="read-mail.html">Alexander Pierce</a></td>
+            <td><input name="user_story" value="{{story.id}}" type="checkbox"></td>
+            <td class="mailbox-subject"><a href="{% url 'scrum_user_story_detail' story.product_backlog.id story.id %}"><b>{{story.title}}</b></a> - {{story.description|truncatechars:30}}<br/>{{story.created_on | relative_time }}, by <a href="{% url 'hris_employee_detail' story.created_by.id %}">{{story.created_by.name}}</a></td>
             <td class="mailbox-attachment">
-              <a href="#"><i class="fa fa-trash"></i></a>
+
+          {% ifrole PRODUCT_OWNER %}
+            {% comment %}
+              <a href="#" title="Edit" data-toggle="tooltip"><i class="fa fa-pencil icon-edit-small" title="Edit" data-toggle="tooltip"></i></a>
+            {% endcomment %}
+              <a href="#" title="Delete" data-toggle="tooltip"><i class="fa fa-trash icon-delete-small" title="Delete" data-toggle="tooltip"></i></a>
+          {% endifrole %}
             </td>
           </tr>
+          {% empty %}
+            <tr>
+              <td>
+                No user stories available.
+              </td>
+            </tr>
           {% endfor %}
         </tbody>
       </table><!-- /.table -->

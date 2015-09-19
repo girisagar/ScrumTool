@@ -31,16 +31,19 @@
     </div><!-- /.box-header -->
 
 
+
     <div class="box-body">
+
       {% ifrole HRADMIN %}
       <div class="add-button row">
         <div class="col-md-12 " style="border-bottom: 1px solid #f4f4f4;">
             <a  href="{% url 'hris_employee_create' %}" class="pull-right" title="Add New Employee" data-toggle="tooltip">
-              <i class="fa fa-plus-circle" style="font-size: 30px; color: #3C8DBC;"></i>
+              <i class="fa fa-plus-circle icon-add"></i>
             </a>
         </div>
       </div>
       {% endifrole %}
+
       <ul class="products-list product-list-in-box">
         {% for employee in employee_list %}
           <li class="item">
@@ -54,10 +57,10 @@
                 {% ifrole HRADMIN %}
                 <div class="col-md-1 pull-right">                  
                   <a class="pull-left" href="{% url 'hris_employee_update' employee.id %}">
-                    <i class="fa fa-pencil" style="font-size: 20px; color: #33CC33;" title="Edit {{employee.user.get_full_name}}"  data-toggle="tooltip"></i>
+                    <i class="fa fa-pencil icon-edit" title="Edit {{employee.user.get_full_name}}"  data-toggle="tooltip"></i>
                   </a>
                   <a class="pull-right" href="{% url 'hris_employee_delete' employee.id %}">
-                    <i class="fa fa-trash" style="font-size: 20px; color: #FF6633;" title="Delete {{employee.user.get_full_name}}" data-toggle="tooltip"></i>
+                    <i class="fa fa-trash icon-delete" title="Delete {{employee.user.get_full_name}}" data-toggle="tooltip"></i>
                   </a>
                 </div>
                 {% endifrole %}

@@ -28,6 +28,8 @@ class EmployeeCreateView(CreateView):
         if user_form.is_valid():
             user = user_form.save()
             form.instance.user = user
+            form.instance.created_by = self.request.user.employee
+            form.instance.updated_by = self.request.user.employee
             form.save()
             messages.add_message(self.request, messages.SUCCESS, 'New employee successfully added')
         else:

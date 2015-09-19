@@ -1,0 +1,51 @@
+{% extends "base.html"%}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+
+<!-- This is page header and bredcrumb -->
+{% block active_product_backlog %}active{% endblock %}
+
+{% block content_header %}
+    <section class="content-header">
+      <h1>
+        SCRUM
+        <small>Control Panel</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{% url 'scrum_home' %}"><i class="fa fa-dashboard"></i> SCRUM</a></li>
+        <li><a href="{% url 'scrum_product_backlog_list' %}"> Product Backlogs</a></li>
+        <li><a href="{% url 'scrum_product_backlog_detail' object.product_backlog.id %}"> {{object.product_backlog.name}}</a></li>
+        <li>{{object.name}}</li>
+        <li class="active">Delete</li>
+      </ol>
+    </section>
+{% endblock %}
+<!-- Add your content here -->
+{% block content %}
+<div class="row">
+
+      <div class="col-md-6">
+      <!-- Horizontal Form -->
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Confirm Delete</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" action="" method="POST">
+          {% csrf_token %}
+          <div class="box-body">
+              <div class="col-md-12 form-group">
+                <p >Are you sure you want to delete this Release Backlog, "{{object.name}}"?</p>
+              </div> 
+          </div><!-- /.box-body -->
+          <div class="box-footer">
+              <a class="btn btn-default" href="{{request.META.HTTP_REFERER}}">Cancel</a>
+              <button class="btn btn-primary pull-right" type="submit" >Confirm</button>
+          </div><!-- /.box-footer -->
+        </form>
+      </div><!-- /.box -->
+    </div>
+</div>
+{% endblock %} 
+<!-- Add your javascript plugin src or code content here -->
+{% block footer_js %}{% endblock %}

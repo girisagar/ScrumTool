@@ -1,11 +1,16 @@
 from django.db import models
 from hris.models import Employee
+from scrum.models import ReleaseBacklog
 
 class Sprint(models.Model):
     name = models.CharField(
         max_length=50, unique=True,
         null=False, blank=False,
         help_text = "Sprint name should be in order like Sprint-1, Sprint-2, and so on"
+    )
+    release_backlog = models.ForeignKey(
+        ReleaseBacklog, null=False,
+        blank=False
     )
 
     # object CRUD related infomation
@@ -31,3 +36,11 @@ class Sprint(models.Model):
 
     class Meta:
         app_label = 'scrum'
+
+    def __unicode__(self):
+        return self.name
+
+    @property
+    def product_backlog(self):
+        return self.release_backlog.product_backlog
+    

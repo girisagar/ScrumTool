@@ -14,7 +14,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{% url 'scrum_home' %}"><i class="fa fa-dashboard"></i> SCRUM</a></li>
-        <li class="active">Product Backlogs</li>
+        <li> <a href="{% url 'scrum_product_backlog_list' %}">Product Backlogs</a></li>
+        <li class="active">List</li>
       </ol>
     </section>
 {% endblock %}
@@ -36,7 +37,7 @@
         <div class="add-button row">
           <div class="col-md-12 " style="border-bottom: 1px solid #f4f4f4;">
               <a  href="{% url 'scrum_product_backlog_create' %}" title="Add New Product Backlog" class=" pull-right" data-toggle="tooltip" >
-                <i class="fa  fa-plus-circle" style="font-size: 30px; color: #3C8DBC;"></i>
+                <i class="fa  fa-plus-circle icon-add"></i>
               </a>
           </div>
         </div>
@@ -50,10 +51,10 @@
                 {% ifrole PRODUCT_OWNER %}
                 <div class="col-md-1 pull-right">                  
                   <a class="pull-left" href="{% url 'scrum_product_backlog_update' product_backlog.id %}">
-                    <i class="fa fa-pencil" style="font-size: 20px; color: #33CC33;" title="Edit {{product_backlog.user.get_full_name}}"  data-toggle="tooltip"></i>
+                    <i class="fa fa-pencil icon-edit" title="Edit {{product_backlog.user.get_full_name}}"  data-toggle="tooltip"></i>
                   </a>
                   <a class="pull-right" href="{% url 'scrum_product_backlog_delete' product_backlog.id %}">
-                    <i class="fa fa-trash" style="font-size: 20px; color: #FF6633;" title="Delete {{product_backlog.user.get_full_name}}" data-toggle="tooltip"></i>
+                    <i class="fa fa-trash icon-delete" title="Delete {{product_backlog.user.get_full_name}}" data-toggle="tooltip"></i>
                   </a>
                 </div>
                 {% endifrole %}

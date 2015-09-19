@@ -34,3 +34,6 @@ class ProductBacklog(models.Model):
 
     class Meta:
         app_label = 'scrum'
+
+    def __unicode__(self):
+        return self.name
