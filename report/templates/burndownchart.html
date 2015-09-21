@@ -1,25 +1,32 @@
-<!DOCTYPE html>
-
+{% extends "base.html"%}
 {% load staticfiles %}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+<!-- This is page header and bredcrumb -->
+{% block content_header %}
+    <section class="content-header">
+      <h1>
+        Dashboard
+        <small>Control panel</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{% url 'hris_home' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+{% endblock %}
+<!-- Add your content here -->
+{% block content %}
+  <div id="container11" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+{% endblock %} 
 
-<html>
-<head>
-	<title>
-		Burndownchart
-	</title>
-</head>
-<body>
-   <!-- <link rel="stylesheet" href="bourbon.css"> -->
+<!-- Add your javascript plugin src or code content here -->
+{% block footer_js %}
 
-	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-</body>
-
-<script src="{% static 'plugins/jQuery/jQuery-2.1.4.min.js' %}"></script>
 <script src="{% static 'highcharts/highcharts.js' %}"></script>
 <script type="text/javascript">
-	$(function () {
-  $('#container').highcharts({
+  $(function () {
+  $('#container11').highcharts({
     chart: {
         type: 'line'
     },
@@ -88,4 +95,4 @@
 
 </script>
 
-</html>
+{% endblock %}
