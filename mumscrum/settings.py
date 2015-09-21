@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'bootstrap3',
     'scrum',
     'pretty_times',
+    'report',
 )
 
 MIDDLEWARE_CLASSES = (
