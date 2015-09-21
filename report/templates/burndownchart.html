@@ -1,0 +1,98 @@
+{% extends "base.html"%}
+{% load staticfiles %}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+<!-- This is page header and bredcrumb -->
+{% block content_header %}
+    <section class="content-header">
+      <h1>
+        Dashboard
+        <small>Control panel</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{% url 'hris_home' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+{% endblock %}
+<!-- Add your content here -->
+{% block content %}
+  <div id="container11" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+{% endblock %} 
+
+<!-- Add your javascript plugin src or code content here -->
+{% block footer_js %}
+
+<script src="{% static 'highcharts/highcharts.js' %}"></script>
+<script type="text/javascript">
+  $(function () {
+  $('#container11').highcharts({
+    chart: {
+        type: 'line'
+    },
+    title: {
+      text: 'Burndown Chart',
+      x: -20 //center
+    },
+    colors: ['blue', 'red'],
+    plotOptions: {
+      line: {
+        lineWidth: 3
+      },
+      tooltip: {
+        hideDelay: 50
+      }
+    },
+    subtitle: {
+      text: 'Sprint 1',
+      x: -20
+    },
+    xAxis: {
+
+      {% autoescape off %}
+        categories: {{ days }}
+      {% endautoescape %}
+
+    },
+    yAxis: {
+      title: {
+        text: 'Hours'
+      },
+      plotLines: [{
+        value: 0,
+        width: 1
+      }],
+      min: 0
+    },
+    tooltip: {
+      valueSuffix: ' hrs',
+      crosshairs: true,
+      shared: true
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle',
+      borderWidth: 0
+    },
+    series: [
+    // {
+    //   name: 'Ideal Burn',
+    //   color: 'rgba(255,0,0,0.25)',
+    //   lineWidth: 2,
+    //   data: {{ ideal_data }}
+    // }, 
+    {
+      name: 'Actual Burn',
+      color: 'rgba(0,120,200,0.75)',
+      marker: {
+        radius: 6
+      },
+      data: {{actual_data}}
+    }]
+  });
+});
+
+</script>
+
+{% endblock %}

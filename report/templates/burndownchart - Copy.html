@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+<head>
+	<title>
+		Burndownchart
+	</title>
+</head>
+<body>
+   <!-- <link rel="stylesheet" href="bourbon.css"> -->
+
+	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+</body>
+
+<script src="{% static 'plugins/jQuery/jQuery-2.1.4.min.js' %}"></script>
+<script src="{% static 'highcharts/highcharts.js' %}"></script>
+<script type="text/javascript">
+	$(function () {
+  $('#container').highcharts({
+    chart: {
+        type: 'line'
+    },
+    title: {
+      text: 'Burndown Chart',
+      x: -20 //center
+    },
+    colors: ['blue', 'red'],
+    plotOptions: {
+      line: {
+        lineWidth: 3
+      },
+      tooltip: {
+        hideDelay: 50
+      }
+    },
+    subtitle: {
+      text: 'Sprint 1',
+      x: -20
+    },
+    xAxis: {
+
+      {% autoescape off %}
+        categories: {{ days }}
+      {% endautoescape %}
+
+    },
+    yAxis: {
+      title: {
+        text: 'Hours'
+      },
+      plotLines: [{
+        value: 0,
+        width: 1
+      }],
+      min: 0
+    },
+    tooltip: {
+      valueSuffix: ' hrs',
+      crosshairs: true,
+      shared: true
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle',
+      borderWidth: 0
+    },
+    series: [{
+      name: 'Ideal Burn',
+      color: 'rgba(255,0,0,0.25)',
+      lineWidth: 2,
+      data: {{ ideal_data }}
+    }, {
+      name: 'Actual Burn',
+      color: 'rgba(0,120,200,0.75)',
+      marker: {
+        radius: 6
+      },
+      data: {{actual_data}}
+    }]
+  });
+});
+
+</script>
+
+</html>
