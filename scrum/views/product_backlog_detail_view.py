@@ -1,7 +1,10 @@
 from django.views.generic import DetailView
-from scrum.models import ProductBacklog
 from django.utils.decorators import method_decorator
 from hris.decorators import employee_role_required
+from scrum.models import ProductBacklog
+from scrum.services import ProductBacklogService
+from scrum.services import ReleaseBacklogService
+from scrum.services import UserStoryService
 
 class ProductBacklogDetailView(DetailView):
     model = ProductBacklog
@@ -13,10 +16,10 @@ class ProductBacklogDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProductBacklogDetailView, self).get_context_data(**kwargs)
         # import pdb; pdb.set_trace()
-        context['user_stories'] = self.get_object().userstory_set.filter(
-            is_deleted=False,
-            release_backlog__isnull=True
+        context['user_stories'] = UserStoryService.product_backlog_stories(
+            self.get_object().id
         )
-        context['release_list'] = self.get_object().releasebacklog_set\
-            .filter(is_deleted=False).order_by('-id')
+        context['release_list'] = ReleaseBacklogService.product_backlog_releases(
+            self.get_object().id
+        ).order_by('-id')
         return context

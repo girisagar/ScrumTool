@@ -11,7 +11,7 @@
 
 .header-shadow{
 	background-color: #F4F4F4;
-	background: #F4F4F4;
+    background: #F4F4F4;
 }
 
 .body-shadow{
@@ -47,3 +47,22 @@
     font-size: 15px;
     color: #FF6633;
 }
+
+.developer-info-image {
+    float: left;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    margin-top: -2px;
+    border-radius: 30%;
+}
+/*
+.developer-image-bg{
+    background-color: #877266;
+    margin: 5px;
+}
+.tester-image-bg{
+    background-color: #33CC33;
+    margin: 5px;
+}
+*/

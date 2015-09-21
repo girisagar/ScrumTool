@@ -12,7 +12,14 @@ class Sprint(models.Model):
         ReleaseBacklog, null=False,
         blank=False
     )
-
+    sprint_start = models.DateTimeField(
+        auto_now=False, auto_now_add=False,
+        null=True, blank=True
+    )
+    sprint_end = models.DateTimeField(
+        auto_now=False, auto_now_add=False,
+        null=True, blank=True
+    )
     # object CRUD related infomation
     created_on = models.DateTimeField(auto_now=False, auto_now_add=True)
     created_by = models.ForeignKey(

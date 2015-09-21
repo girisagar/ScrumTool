@@ -16,7 +16,7 @@ class UserStoryToSprintView(View):
     def post(self, *args, **kwargs):
         self.release_id = kwargs.get('release_id')
         self.release_backlog = ReleaseBacklog.objects.get(id=self.release_id)
-        sprint_id = self.request.POST['sprint']
+        sprint_id = self.request.POST['sprint_id']
         user_stories = self.get_selected_stories(self.request.body)
         try:
             sprint = Sprint.objects.get(id=sprint_id)

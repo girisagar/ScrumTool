@@ -23,4 +23,4 @@ class ReleaseBacklogUpdateView(UpdateView):
         messages.add_message(self.request, messages.SUCCESS, \
             'Release Backlog Successfully Updated')
         return reverse_lazy('scrum_product_backlog_detail',\
-        	args = [self.get_object().product_backlog.id])
+            args = [self.get_object().product_backlog.id])

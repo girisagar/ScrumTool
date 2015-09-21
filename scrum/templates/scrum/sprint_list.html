@@ -11,6 +11,7 @@
   <div class="box-body body-shadow">
     <div class="panel-group" id="accordion-2">
       {% for sprint in release.sprint_set.all %}
+        {% if not sprint.is_deleted %}
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
@@ -24,12 +25,15 @@
             </h4>
           </div>
           <div id="sprint{{sprint.id}}" class="panel-collapse collapse">
+        {% ifrole PRODUCT_OWNER SCRUM_MASTER %}
             <div class="panel-body">
-              data
+              {% include "scrum/sprint_stories.html" %}
             </div>
+        {% endifrole %}
           </div>
         </div>
-      {% endfor %}            
+        {% endif %}
+      {% endfor %}
     </div>
   </div><!-- /.box-body -->
 </div><!-- /. box -->

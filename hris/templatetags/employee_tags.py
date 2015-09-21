@@ -63,7 +63,7 @@ class GroupCheckNode(template.Node):
         allowed=False
         for checkrole in self.roles:
             try:
-                role = Role.objects.get(code__icontains=checkrole) #hradmin
+                role = Role.objects.get(code__iexact=checkrole) #hradmin
             except Role.DoesNotExist:
                 break
             if role in user.employee.roles.all():

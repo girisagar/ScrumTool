@@ -1,0 +1,29 @@
+{% load prettytimes_tags %}
+{% load employee_tags %}
+
+<div class="table-responsive mailbox-messages">
+  <table class="table table-hover table-striped">
+    <tbody>
+      {% for story in release_stories %}
+      <tr>
+        <td><input name="user_story" value="{{story.id}}" type="checkbox"></td>
+        <td class="mailbox-subject"><a href="{% url 'scrum_user_story_detail' story.product_backlog.id story.id %}"><b>{{story.title}}</b></a> - {{story.description|truncatechars:30}}<br/>{{story.created_on | relative_time }}, by <a href="{% url 'hris_employee_detail' story.created_by.id %}">{{story.created_by.name}}</a></td>
+        <td class="mailbox-attachment">
+      {% ifrole PRODUCT_OWNER %}
+        {% comment %}
+          <a href="#" title="Edit" data-toggle="tooltip"><i class="fa fa-pencil icon-edit-small" title="Edit" data-toggle="tooltip"></i></a>
+        {% endcomment %}
+          <a href="{% url 'scrum_release_backlog_user_story_delete' story.id %}" title="Delete" data-toggle="tooltip"><i class="fa fa-trash icon-delete-small" title="Delete" data-toggle="tooltip"></i></a>
+      {% endifrole %}
+        </td>
+      </tr>
+      {% empty %}
+        <tr>
+          <td>
+            No user stories available.
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table><!-- /.table -->
+</div><!-- /.mail-box-messages -->

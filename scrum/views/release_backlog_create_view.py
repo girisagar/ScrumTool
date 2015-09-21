@@ -17,7 +17,7 @@ class ReleaseBacklogCreateView(CreateView):
     def form_valid(self, form):
         form.instance.created_by = self.request.user.employee
         form.instance.updated_by = self.request.user.employee
-        form.instance.product_id = self.product_id
+        form.instance.product_backlog_id = self.product_id
         return super(ReleaseBacklogCreateView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):

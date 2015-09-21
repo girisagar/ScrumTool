@@ -10,6 +10,8 @@ from scrum.views import ReleaseBacklogUpdateView
 from scrum.views import ReleaseBacklogDeleteView
 from scrum.views import ReleaseBacklogDetailView
 from scrum.views import ReleaseBacklogListView
+from scrum.views import ReleaseBacklogStoryDeleteView
+from scrum.views import ReleaseBacklogAssignScrumMasterView
 
 from scrum.views import home as scrum_home
 
@@ -19,7 +21,7 @@ from scrum.views import UserStoryDetailView
 from scrum.views import UserStoryUpdateView
 from scrum.views import UserStoryToReleaseView
 from scrum.views import UserStoryToSprintView
-
+from scrum.views import SprintStoryDeleteView
 
 from scrum.views import SprintCreateView
 from scrum.views import SprintDeleteView
@@ -72,14 +74,24 @@ urlpatterns = [
         name = "scrum_release_backlog_delete"
     ),
     url(
+        r'product-backlog/(?P<product_id>\d+)/release-backlog/create/$',
+        ReleaseBacklogCreateView.as_view(),
+        name = "scrum_release_backlog_create"
+    ),
+    url(
         r'release-backlog/detail/(?P<pk>\d+)/$',
         ReleaseBacklogDetailView.as_view(),
         name = "scrum_release_backlog_detail"
     ),
     url(
-        r'product-backlog/(?P<product_id>\d+)/release-backlog/create/$',
-        ReleaseBacklogCreateView.as_view(),
-        name = "scrum_release_backlog_create"
+        r'release-backlog/assign-scrum-master/(?P<pk>\d+)/$',
+        ReleaseBacklogAssignScrumMasterView.as_view(),
+        name = "scrum_release_backlog_assign_scrum_master"
+    ),
+    url(
+        r'release-backlog/user-story/delete/(?P<pk>\d+)/$',
+        ReleaseBacklogStoryDeleteView.as_view(),
+        name = "scrum_release_backlog_user_story_delete"
     ),
     url(
         r'release-backlog/$',
@@ -107,7 +119,7 @@ urlpatterns = [
         name = "scrum_user_story_update"
     ),
     url(
-        r'release-backlog/(?P<releasse_id>\d+)/move-stories/$',
+        r'release-backlog/(?P<release_id>\d+)/move-stories/$',
         UserStoryToSprintView.as_view(),
         name = "scrum_user_story_to_sprint"
     ),
@@ -126,6 +138,16 @@ urlpatterns = [
         SprintUpdateView.as_view(),
         name = "scrum_sprint_update"
     ),
+    url(
+        r'sprint/user-story/delete/(?P<pk>\d+)/$',
+        SprintStoryDeleteView.as_view(),
+        name = "scrum_sprint_user_story_delete"
+    ),
+    # url(
+    #     r'user-story/assign-developer/(?P<pk>\d+)/delete/$',
+    #     SprintStoryDeleteView.as_view(),
+    #     name = "scrum_sprint_user_story_delete"
+    # ),
     url(
         r'$',
         scrum_home,
