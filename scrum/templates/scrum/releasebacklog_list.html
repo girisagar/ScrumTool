@@ -13,6 +13,20 @@
     </div>
   </div>
   <div class="box-body"  style="padding: 10px;" id="release{{release.id}}">
+    {% ifrole PRODUCT_OWNER %}
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert scrum-master-info">
+          {% if release.scrum_master %}
+            This release is assigned to&nbsp;&nbsp;<a title="{{release.scrum_master.name}}" data-toggle="tooltip" href="{% url 'hris_employee_detail' release.scrum_master.id %}">{% profile_image release.scrum_master "employee-profile-avatar-small"%}&nbsp;&nbsp;{{release.scrum_master.name}}</a>&nbsp;&nbsp;Change            
+          {% else %}
+            This Release Is Not Assigned To Anyone Add
+          {% endif %}
+          <a href="{% url 'scrum_release_backlog_assign_scrum_master' release.id %}">Scrum Master</a>
+        </div>
+      </div>
+    </div>
+    {% endifrole %}
     <div class="row">
       <div class="col-md-12">              
         {% ifrole PRODUCT_OWNER SCRUM_MASTER %}

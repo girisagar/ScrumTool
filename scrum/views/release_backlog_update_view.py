@@ -8,7 +8,6 @@ from hris.decorators import employee_role_required
 class ReleaseBacklogUpdateView(UpdateView):
     model = ReleaseBacklog
     fields = ('name', )
-    success_url = reverse_lazy('hris_releasebacklog_list')
 
     # @method_decorator(employee_role_required("product_owner"))
     def dispatch(self, *args, **kwargs):

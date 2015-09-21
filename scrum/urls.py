@@ -21,11 +21,15 @@ from scrum.views import UserStoryDetailView
 from scrum.views import UserStoryUpdateView
 from scrum.views import UserStoryToReleaseView
 from scrum.views import UserStoryToSprintView
-from scrum.views import SprintStoryDeleteView
+from scrum.views import UserStoryAssignTesterView
+from scrum.views import UserStoryAssignDeveloperView
 
 from scrum.views import SprintCreateView
 from scrum.views import SprintDeleteView
 from scrum.views import SprintUpdateView
+from scrum.views import SprintStoryDeleteView
+from scrum.views import SprintStartView
+from scrum.views import SprintEndView
 
 urlpatterns = [
     url(
@@ -139,15 +143,30 @@ urlpatterns = [
         name = "scrum_sprint_update"
     ),
     url(
+        r'sprint/start/(?P<pk>\d+)/$',
+        SprintStartView.as_view(),
+        name = "scrum_sprint_start"
+    ),
+    url(
+        r'sprint/end/(?P<pk>\d+)/$',
+        SprintEndView.as_view(),
+        name = "scrum_sprint_end"
+    ),
+    url(
         r'sprint/user-story/delete/(?P<pk>\d+)/$',
         SprintStoryDeleteView.as_view(),
         name = "scrum_sprint_user_story_delete"
     ),
-    # url(
-    #     r'user-story/assign-developer/(?P<pk>\d+)/delete/$',
-    #     SprintStoryDeleteView.as_view(),
-    #     name = "scrum_sprint_user_story_delete"
-    # ),
+    url(
+        r'user-story/assign-developer/(?P<pk>\d+)/$',
+        UserStoryAssignDeveloperView.as_view(),
+        name = "scrum_user_story_assign_developer"
+    ),
+    url(
+        r'user-story/assign-tester/(?P<pk>\d+)/$',
+        UserStoryAssignTesterView.as_view(),
+        name = "scrum_user_story_assign_tester"
+    ),
     url(
         r'$',
         scrum_home,

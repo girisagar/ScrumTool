@@ -44,7 +44,7 @@ class Employee(models.Model):
     )
 
     def __unicode__(self):
-        return str(self.user.username)
+        return self.user.get_full_name()
 
     @property
     def address(self):

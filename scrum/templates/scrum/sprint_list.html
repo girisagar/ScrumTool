@@ -18,6 +18,11 @@
               <a data-toggle="collapse" data-parent="#accordion-2" href="#sprint{{sprint.id}}"> {{sprint}}&nbsp;&nbsp;</a>
                 {% ifrole SCRUM_MASTER PRODUCT_OWNER %}
                   <div class="controls pull-right" >                    
+                    {% if not sprint.sprint_start %}
+                      <a href="{% url 'scrum_sprint_start' sprint.id %}" class="btn btn-default-sm">Start Sprint</a>
+                    {% elif not sprint.sprint_end %}
+                      <a href="{% url 'scrum_sprint_end' sprint.id %}" class="btn btn-default-sm">End Sprint</a>
+                    {% endif %}
                     <a href="{% url 'scrum_sprint_update' sprint.id %}"><i class="fa fa-pencil icon-edit-small" title="Edit" data-toggle="tooltip"></i></a>&nbsp;&nbsp;
                     <a href="{% url 'scrum_sprint_delete' sprint.id %}"><i class="fa fa-trash icon-delete-small" title="Delete" data-toggle="tooltip"></i></a>
                   </div>

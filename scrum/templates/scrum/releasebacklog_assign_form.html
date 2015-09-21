@@ -11,7 +11,7 @@
       <ol class="breadcrumb">
         <li><a href="{% url 'scrum_home' %}"><i class="fa fa-dashboard"></i> SCRUM</a></li>
         <li><a href="{% url 'scrum_product_backlog_list' %}"> Product Backlogs</a></li>        
-        <li><a href="{% url 'scrum_product_backlog_detail' product_obj.id %}"> {{product_obj.name}}</a></li>
+        <li><a href="{% url 'scrum_product_backlog_detail' object.product_backlog.id %}"> {{object.product_backlog.name}}</a></li>
         {% if object %}
         <!-- <li><a href="{% url 'scrum_release_backlog_detail' object.id %}"></a>Release Backlog</li> -->
         {% endif %}
@@ -25,8 +25,8 @@
   <div class="col-md-12">
     <div class="box box-info">
       <div class="box-header with-border">
-        <h3 class="box-title">{{product_obj.name}}</h3>
-        <small>&nbsp;{% if object %}Update{% else %}Create New{% endif %} Release Backlog</small>
+        <h3 class="box-title">{{object.product_backlog.name}}</h3>
+        <small>&nbsp;Assign Scrum Master</small>
       </div><!-- /.box-header -->
       <!-- form start -->
       <div class="row">

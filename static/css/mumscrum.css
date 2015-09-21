@@ -56,13 +56,51 @@
     margin-top: -2px;
     border-radius: 30%;
 }
-/*
-.developer-image-bg{
-    background-color: #877266;
-    margin: 5px;
+
+.scrum-master-info{
+    /*font-size: 20px;*/
+    /*color: #000;*/
+    background-color: #C2D7E7;
 }
-.tester-image-bg{
-    background-color: #33CC33;
-    margin: 5px;
+
+.scrum-master-info a{
+    /*font-size: 20px;*/
+    color: blue !important;   
+
+    text-decoration: none !important; 
 }
-*/
+
+.employee-profile-avatar-small {
+    /*vertical-align: middle;*/
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    /*margin-left: -100%;*/
+    /*margin-top: -50px;*/
+    max-height: 25px;
+    max-width: 25px;
+}
+
+.alert-success {
+    color: #3c763d !important;
+    background-color: #dff0d8 !important;
+    border-color: #d6e9c6 !important;
+}
+
+.alert-info {
+    color: #31708f !important;
+    background-color: #d9edf7 !important;
+    border-color: #bce8f1 !important;
+}
+
+.alert-danger {
+    color: #a94442 !important;
+    background-color: #f2dede !important;
+    border-color: #ebccd1 !important;
+}
+
+.alert-warning {
+    color: #8a6d3b !important;
+    background-color: #fcf8e3 !important;
+    border-color: #faebcc !important;
+}
