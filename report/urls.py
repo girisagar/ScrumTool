@@ -4,7 +4,7 @@ from django.conf.urls import url
 
 # urlpatterns = [
 #     url(
-#         # r'sprint/(?P<sprint_id>\d+)/$',
+#         r'sprint/(?P<sprint_id>\d+)/$',
 #         r'$',
 #         SprintBurndownChartView.as_view(),
 #         name = "report_sprint"

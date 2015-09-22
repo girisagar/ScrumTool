@@ -1,0 +1,78 @@
+{% extends "base.html"%}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+<!-- This is page header and bredcrumb -->
+{% load employee_tags %}
+
+{% block active_product_backlog %}active{% endblock %}
+
+{% block content_header %}
+    <section class="content-header">
+      <h1>
+        Report
+        <small>Control Panel</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{% url 'burndownchart_home' %}"><i class="fa fa-dashboard"></i> Report</a></li>
+        <li class="active">List</li>
+      </ol>
+    </section>
+{% endblock %}
+<!-- Add your content here -->
+{% block content %}
+<!-- EMPLOYEE LIST -->
+  <div class="box box-primary">
+    <div class="box-header with-border">
+      <h3 class="box-title">Product Backlog List</h3>
+      <div class="box-tools pull-right">
+        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+      </div>
+    </div><!-- /.box-header -->
+
+
+    <div class="box-body">
+      {% ifrole PRODUCT_OWNER %}
+        <div class="add-button row">
+          <div class="col-md-12 " style="border-bottom: 1px solid #f4f4f4;">
+              <a  href="{% url 'scrum_product_backlog_create' %}" title="Add New Product Backlog" class=" pull-right" data-toggle="tooltip" >
+                <i class="fa  fa-plus-circle icon-add"></i>
+              </a>
+          </div>
+        </div>
+      {% endifrole %}
+      <ul class="products-list product-list-in-box">
+        {% for product_backlog in object_list %}
+          <li class="item">
+            <div class="product-info">
+              <a href="{% url 'burndownchart' product_backlog.id %}" class="product-title" data-toggle="tooltip" title="See more about {{product_backlog.name}}">
+               <h4>{{product_backlog.name}}
+                {% ifrole PRODUCT_OWNER SCRUM_MASTER DEVELOPER TESTER %}
+                
+                {% endifrole %}
+               </h4>
+              </a>
+              <span class="product-description">
+                {% load prettytimes_tags %}
+                <span><small><b>Created :&nbsp;</b>{{product_backlog.created_on | relative_time}}</small></span><br/>
+                <span><small><b>Created By:&nbsp;</b></small>
+                <a href="{% url 'hris_employee_detail' product_backlog.created_by.id %}" target="_top">{{product_backlog.created_by.user.get_full_name}}</a><br/>
+                </span>
+              </span>
+            </div>
+          </li>
+          {% endfor %}
+      </ul>
+    </div><!-- /.box-body -->
+  </div><!-- /.box -->
+
+{% if is_paginated %}
+  {% load paginator %}
+  {% paginator %}
+{% endif %}
+
+{% endblock %} 
+<!-- Add your javascript plugin src or code content here -->
+{% block footer_js %}
+
+{% endblock %}
