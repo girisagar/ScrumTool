@@ -61,7 +61,8 @@ def sprint(request):
     actual_data = [j[1] for j in sorted_burndown_chart]
     
     context = { "days": days,
-                "actual_data": actual_data
+                "actual_data": actual_data,
+                "sprint_name": sprint_name
     }
 
 
