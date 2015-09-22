@@ -37,6 +37,9 @@ class WorkLog(models.Model):
         blank=True, related_name="worklog_deleted_by"
     )
 
+    def __unicode__(self):
+        return str(self.date)
+
     class Meta:
         app_label = 'scrum'
         unique_together = ['date', 'employee']

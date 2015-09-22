@@ -42,5 +42,8 @@ class UserStory(models.Model):
         blank=True, related_name="userstory_deleted_by"
     )
 
+    def __unicode__(self):
+        return self.title
+
     class Meta:
         app_label = 'scrum'
