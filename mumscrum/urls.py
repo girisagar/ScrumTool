@@ -29,6 +29,7 @@ from mumscrum.views.page_not_found_view import page_not_found_view
 from mumscrum.views.bad_request_view import bad_request_view
 from mumscrum.views.permission_denied_view import permission_denied_view
 from mumscrum.views.server_error_view import server_error_view
+from report.views import BurnDownChartListView
 
 handler400 = bad_request_view
 handler404 = page_not_found_view
@@ -77,7 +78,8 @@ urlpatterns = [
     url(r'^scrum/', include("scrum.urls")),
     # url(r'^report/', include("report.urls")),
     url(r'^$', 'mumscrum.views.home', name='home'),
-    url(r'^burndownchart/$', "report.views.sprint_burndownchart.sprint", name="burndownchart"),
+    url(r'^burndownchart/$', BurnDownChartListView.as_view(), name="burndownchart_home"),
+    url(r'^burndownchart/(?P<pk>\d+)/$', "report.views.sprint_burndownchart.sprint", name="burndownchart"),
     # serving media files
 ]
 
