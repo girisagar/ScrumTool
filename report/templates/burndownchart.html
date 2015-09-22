@@ -18,37 +18,42 @@
 <!-- Add your content here -->
 {% block content %}
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="form-group">
-      <label>Select Release Backlog</label>
-      <select class="form-control">
-        <option>option 1</option>
-        <option>option 1</option>
-        <option>option 2</option>
-        <option>option 3</option>
-        <option>option 4</option>
-        <option>option 5</option>
-      </select>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group">
+        <label>Select Release Backlog</label>
+        <select class="form-control">
+          <option>option 1</option>
+          <option>option 1</option>
+          <option>option 2</option>
+          <option>option 3</option>
+          <option>option 4</option>
+          <option>option 5</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <div class="form-group">
+        <label>Select Sprint</label>
+        <select class="form-control">
+          <option>option 1</option>
+          <option>option 1</option>
+          <option>option 2</option>
+          <option>option 3</option>
+          <option>option 4</option>
+          <option>option 5</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>&nbsp</label>
+        <button class="btn btn-block btn-success" type="button">View Chart</button>
+      </div>
     </div>
   </div>
-
-  <div class="col-md-6">
-    <div class="form-group">
-      <label>Select Sprint</label>
-      <select class="form-control">
-        <option>option 1</option>
-        <option>option 1</option>
-        <option>option 2</option>
-        <option>option 3</option>
-        <option>option 4</option>
-        <option>option 5</option>
-      </select>
-    </div>
-  </div>
-
-    <button class="btn btn-block btn-default" type="button">Default</button>
-</div>
 
   <div id="container11" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 {% endblock %} 
@@ -77,15 +82,16 @@
       }
     },
     subtitle: {
-      text: 'Sprint 1',
+      text: '{{ sprint_name }}',
       x: -20
     },
     xAxis: {
-
-      {% autoescape off %}
-        categories: {{ days }}
-      {% endautoescape %}
-
+        title: {
+          text: 'Days'
+      },
+        {% autoescape off %}
+          categories: {{ days }}
+        {% endautoescape %}
     },
     yAxis: {
       title: {
