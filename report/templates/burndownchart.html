@@ -25,17 +25,7 @@
       <div class="col-md-5">
         <div class="form-group">
           <label>Select Release Backlog</label>
-            <select id="release_backlog" name="release_backlog" placeholder="Phantasyland" class="form-control">
-<!--                 <option></option>
-                <option>Germany</option>
-                <option>Spain</option>
-                <option>Hungary</option>
-                <option>USA</option>
-                <option>Mexico</option>
-                <option>South Africa</option>
-                <option>China</option>
-                <option>Russia</option> -->
-
+            <select id="release_backlog" name="release_backlog" class="form-control">
                 <option></option>
                 {% for key, value in release_backlogs.items %}
                     <option>{{ key }}</option>
@@ -47,7 +37,7 @@
       <div class="col-md-5">
         <div class="form-group">
           <label>Select Sprint</label>
-          <select id="sprint" name="sprint" placeholder="Anycity" class="form-control"></select>
+          <select id="sprint" name="sprint" class="form-control"></select>
         </div>
       </div>
 
@@ -137,64 +127,26 @@
   });
 });
 
+jQuery(function($) {
+    var dicts = {
+      {% load simplify_dict %}
+      {% for key, value in release_backlogs.items %}
+        '{{ key }}': {% get_sprints release_backlogs key %},
+      {% endfor %}
 
-$(document).ready(function() {
+    }
+    
+    var $dicts = $('#sprint');
+    $('#release_backlog').change(function () {
+        var release_backlog = $(this).val(), lcns = dicts[release_backlog] || [];
+        
+        var html = $.map(lcns, function(lcn){
+            return '<option value="' + lcn + '">' + lcn + '</option>'
+        }).join('');
+        $dicts.html(html)
+    });
+
 });
-
-
-  jQuery(function($) {
-      // var sprints = {
-      //     // 'Germany': ['Duesseldorf', 'Leinfelden-Echterdingen', 'Eschborn'],
-      //     // 'Spain': ['Barcelona'],
-      //     // 'Hungary': ['Pecs'],
-      //     // 'USA': ['Downers Grove'],
-      //     // 'Mexico': ['Puebla'],
-      //     // 'South Africa': ['Midrand'],
-      //     // 'China': ['Beijing'],
-      //     // 'Russia': ['St. Petersburg'],
-
-      //   {% load simplify_dict %}
-      //   {% for key, value in release_backlogs.items %}
-      //     '{{ key }}': {% get_sprints release_backlogs key %},
-      //   {% endfor %}
-
-      // }
-
-
-      
-      // var $sprints = $('#sprint');
-      // $('#release_backlog').change(function () {
-      //     var release_backlog = $(this).val(), lcns = sprints[release_backlog] || [];
-          
-      //     var html = $.map(lcns, function(lcn){
-      //         return '<option value="' + lcn + '">' + lcn + '</option>'
-      //     }).join('');
-      //     $sprints.html(html)
-      // });
-
-      var dicts = {
-        {% load simplify_dict %}
-        {% for key, value in release_backlogs.items %}
-          '{{ key }}': {% get_sprints release_backlogs key %},
-        {% endfor %}
-
-      }
-
-      
-      var $dicts = $('#sprint');
-      $('#release_backlog').change(function () {
-          var release_backlog = $(this).val(), lcns = dicts[release_backlog] || [];
-          
-          var html = $.map(lcns, function(lcn){
-              return '<option value="' + lcn + '">' + lcn + '</option>'
-          }).join('');
-          $dicts.html(html)
-      });
-
-  });
-
-
-
 
 </script>
 
