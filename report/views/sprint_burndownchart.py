@@ -64,7 +64,8 @@ def sprint(request, pk):
         for date in date_list:
             print "date: ", date
             for user_story_id in user_story_list:
-                # print "user story id: ", user_story_id 
+                # print "user story id: ", user_story_id
+                prev_work = 0
                 for worklog in WorkLog.objects.filter(user_story_id=user_story_id, date=date):
                     # print "worklog id: ", worklog.id, " work_reamaingin: ", worklog.work_remaining
                     burndown_chart[date] = burndown_chart[date] + worklog.work_remaining
@@ -94,10 +95,8 @@ def sprint(request, pk):
     return render(request, "burndownchart.html", context)
 
 def sprint_frmto(sprint_started):
-    sprint_started = '2015-09-21' # from db
     frm_date = datetime.datetime.strptime(sprint_started, "%Y-%m-%d").date()
     to_date = datetime.datetime.strptime("2015-09-24", "%Y-%m-%d").date()
-    # to_date = datetime.datetime.today().date()
     days = (to_date - frm_date).days
 
     date_list = []
