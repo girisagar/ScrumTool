@@ -30,15 +30,20 @@ def sprint(request, pk):
     if request.method == "POST":
         if "sprint" in request.POST:
             sprint_name = request.POST["sprint"]
+            release_backlog_id = ReleaseBacklog.objects.filter(name=request.POST["release_backlog"], product_backlog=pk).get().id
+            sprint_id = Sprint.objects.filter(name=sprint_name, release_backlog=release_backlog_id)
         else:
-            sprint_name = get_latest_sprint()
+            sprint_name, sprint_id = get_latest_sprint()
+
     elif request.method == "GET":
-        sprint_name = get_latest_sprint()
+         sprint_name, sprint_id = get_latest_sprint()
     
     release_backlogs = get_backlogs(pk)
 
-    sprint = Sprint.objects.filter(name=sprint_name).get()
+    sprint = Sprint.objects.filter(name=sprint_name, id=sprint_id).get()
     sprint_id = sprint.id
+
+
     if sprint.sprint_start:
         sprint_start = str(sprint.sprint_start.date())
         user_stories = UserStory.objects.filter(sprint=sprint_id)
@@ -110,4 +115,6 @@ def get_backlogs(product_backlog_id=1):
     return release_backlogs
 
 def get_latest_sprint():
-    return  Sprint.objects.latest('sprint_start').name
+    sprint = Sprint.objects.latest('sprint_start')
+    return  (sprint.name, sprint.id)
+
