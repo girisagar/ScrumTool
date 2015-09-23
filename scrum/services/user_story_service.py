@@ -49,6 +49,6 @@ class UserStoryService(object):
     def tester_user_stories(tester_id, deleted=False):
         # default returns all undeleted userstories where
         return UserStory.objects.filter(
-            assiged_developer__id=tester_id,
+            assiged_tester__id=tester_id,
             is_deleted=deleted
         )

@@ -12,12 +12,13 @@ class ReleaseBacklogAssignScrumMasterView(UpdateView):
     # fields = ('scrum_master',)
     template_name = "scrum/releasebacklog_assign_form.html"
 
-    # @method_decorator(employee_role_required("product_owner"))
+    @method_decorator(employee_role_required("product_owner"))
     def dispatch(self, *args, **kwargs):
         return super(ReleaseBacklogAssignScrumMasterView, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
         form.instance.updated_by = self.request.user.employee
+        employee = form.instance.scrum_master
         return super(ReleaseBacklogAssignScrumMasterView, self).form_valid(form)
 
 

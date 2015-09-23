@@ -12,7 +12,7 @@ class DevelopmentEstimateCreateView(CreateView):
     template_name = "emptask/development_estimate_daily_form.html"
     fields = ('work_remaining', 'work_done', 'description')
 
-    # @method_decorator(employee_role_required("product_owner"))
+    @method_decorator(employee_role_required("developer"))
     def dispatch(self, *args, **kwargs):
         return super(DevelopmentEstimateCreateView, self).dispatch(*args, **kwargs)
     

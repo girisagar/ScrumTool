@@ -8,7 +8,7 @@ class ProductBacklogListView(ListView):
     model = ProductBacklog
     paginate_by = 10
 
-    @method_decorator(employee_role_required("product_owner"))
+    @method_decorator(employee_role_required("product_owner", "scrum_master"))
     def dispatch(self, *args, **kwargs):
         return super(ProductBacklogListView, self).dispatch(*args, **kwargs)
     

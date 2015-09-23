@@ -7,7 +7,7 @@ from scrum.services import UserStoryService
 class EmployeeTaskTemplateView(TemplateView):
     template_name = "emptask/employeetasks.html"
     
-    # @method_decorator(employee_role_required("developer", "tester"))
+    @method_decorator(employee_role_required("developer", "tester"))
     def dispatch(self, *args, **kwargs):
         return super(EmployeeTaskTemplateView, self).dispatch(*args, **kwargs)
 
