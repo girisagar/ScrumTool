@@ -141,15 +141,15 @@
                                                 </td>
                                                 <td>
                                                     <label class="badge badge-info">
-                                                    {% if story.developer_effort %}
-                                                        {{story.developer_effort}} hours
+                                                    {% if story.tester_effort %}
+                                                        {{story.tester_effort}} hours
                                                     {% else %}
                                                         Not estimated
                                                     {% endif %}
                                                     </label>
                                                 </td>
                                                 <td>
-                                                    {% if story.developer_effort == None %}
+                                                    {% if story.tester_effort == None %}
                                                         <a href="{% url 'emptask_testing_estimate' story.id %}" title="Click to start task" data-toggle="tooltip"><i class="fa fa-times-circle icon-delete" ></i></a>
                                                     {% else %}
                                                         <a href="{% url 'emptask_testing_estimate' story.id %}" title="Click to change estimation" data-toggle="tooltip"><i class="fa fa-check-circle icon-edit" ></i></a>

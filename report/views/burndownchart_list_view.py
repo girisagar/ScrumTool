@@ -4,6 +4,7 @@ from scrum.services import ProductBacklogService
 from django.utils.decorators import method_decorator
 from hris.decorators import employee_role_required
 
+
 class BurnDownChartListView(ListView):
     model = ProductBacklog
     paginate_by = 10

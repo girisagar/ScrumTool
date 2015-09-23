@@ -178,12 +178,15 @@
             </li>
             {% endifrole %}
 
+            {% ifrole DEVELOPER TESTER PRODUCT_OWNER SCRUM_MASTER%}            
+
             <li class="{% block active_burndownchart %}{% endblock %}">
               <a href="{% url 'burndownchart_home' %}">
                 <i class="fa fa-bar-chart"></i>
                 <span>Burndown Chart</span>
               </a>
             </li>
+            {% endifrole %}
           </ul>
         </section>
         <!-- /.sidebar -->
