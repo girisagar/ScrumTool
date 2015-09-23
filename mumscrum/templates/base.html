@@ -163,7 +163,7 @@
             {% ifrole PRODUCT_OWNER %}
             <li class="{% block active_product_backlog %}{% endblock %}">
               <a href="{% url 'scrum_product_backlog_list' %}">
-                <i class="fa fa-files-o"></i>
+                <i class="fa fa-database"></i>
                 <span>Product Backlog</span>
               </a>
             </li>
@@ -178,7 +178,7 @@
             </li>
             {% endifrole %}
 
-            <li>
+            <li class="{% block active_burndownchart %}{% endblock %}">
               <a href="{% url 'burndownchart_home' %}">
                 <i class="fa fa-bar-chart"></i>
                 <span>Burndown Chart</span>

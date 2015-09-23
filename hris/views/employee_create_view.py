@@ -14,6 +14,7 @@ class EmployeeCreateView(CreateView):
     model = Employee
     form_class = EmployeeForm
     user_form = UserForm
+    template_name = "hris/employee_form.html"
 
     @method_decorator(employee_role_required("hradmin"))
     def dispatch(self, *args, **kwargs):
