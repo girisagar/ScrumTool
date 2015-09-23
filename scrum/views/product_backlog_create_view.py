@@ -21,5 +21,6 @@ class ProductBacklogCreateView(CreateView):
         return super(ProductBacklogCreateView, self).form_valid(form)
 
     def get_success_url(self, *args, **kwargs):
-        messages.add_message(self.request, messages.SUCCESS, 'New Prodcuct Backlog successfully added')        
+        messages.add_message(self.request, messages.SUCCESS,\
+            'New Prodcuct Backlog successfully added')
         return reverse_lazy('scrum_product_backlog_list')

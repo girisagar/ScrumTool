@@ -27,7 +27,7 @@ class SprintCreateView(CreateView):
         context = super(SprintCreateView, self).get_context_data(**kwargs)
         context['release_backlog'] = self.get_release_object()
         return context
-        
+    
     def get_success_url(self):
         messages.add_message(self.request, messages.SUCCESS, \
             'New Sprint successfully added to {0}'.format(

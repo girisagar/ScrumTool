@@ -20,13 +20,12 @@ class UserStoryCreateView(CreateView):
         return super(UserStoryCreateView, self).post(*args, **kwargs)
 
     def form_valid(self, form):
-        form.instance.product_backlog_id = self.kwargs.get('product_id')
         form.instance.created_by = self.request.user.employee
         form.instance.updated_by = self.request.user.employee
+        form.instance.product_backlog_id = self.kwargs.get('product_id')
         return super(UserStoryCreateView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
-        # import pdb;pdb.set_trace()
         context = super(UserStoryCreateView, self).get_context_data(**kwargs)
         try:
             product_obj = ProductBacklog.objects.get(id=self.product_id)
@@ -37,5 +36,5 @@ class UserStoryCreateView(CreateView):
         
     def get_success_url(self):
         messages.add_message(self.request, messages.SUCCESS, \
-            'New Prodcuct Backlog successfully added')        
+            'New User Story successfully added')        
         return reverse_lazy('scrum_product_backlog_detail', args = [self.product_id])

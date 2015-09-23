@@ -10,7 +10,6 @@ from scrum.forms import ScrumMasterForm
 class ReleaseBacklogAssignScrumMasterView(UpdateView):
     form_class = ScrumMasterForm
     model = ReleaseBacklog
-    # fields = ('scrum_master',)
     template_name = "scrum/releasebacklog_assign_form.html"
 
     @method_decorator(employee_role_required("product_owner"))
@@ -24,7 +23,6 @@ class ReleaseBacklogAssignScrumMasterView(UpdateView):
         employee.roles.add(scrum_master)
         employee.save()
         return super(ReleaseBacklogAssignScrumMasterView, self).form_valid(form)
-
 
     def get_success_url(self):
         messages.add_message(
