@@ -76,6 +76,7 @@ urlpatterns = [
     url(r'^hris/', include("hris.urls")),
     url(r'^scrum/', include("scrum.urls")),
     # url(r'^report/', include("report.urls")),
+    url(r'^tasks/', include("emptask.urls")),
     url(r'^$', 'mumscrum.views.home', name='home'),
     # serving media files
 ]

@@ -37,13 +37,15 @@
           </div>
           <div class="col-md-1">
             <div class="row">
-              <div class="col-md-12">                            
+              <div class="col-md-12"> 
+              {% ifrole PRODUCT_OWNER %}                           
                 <a class="pull-left" href="{% url 'scrum_user_story_update' object.product_backlog.id object.id %}">
                   <i class="fa fa-pencil" style="font-size: 20px; color: #33CC33;" title="Edit {{object.user.get_full_name}}"  data-toggle="tooltip"></i>
                 </a>
                 <a class="pull-right" href="{% url 'scrum_user_story_delete' object.product_backlog.id object.id %}">
                   <i class="fa fa-trash" style="font-size: 20px; color: #FF6633;" title="Delete {{object.user.get_full_name}}" data-toggle="tooltip"></i>
                 </a>                            
+              { endifrole %}                           
               </div>
             </div>
           </div>

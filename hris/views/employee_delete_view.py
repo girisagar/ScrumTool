@@ -18,5 +18,5 @@ class EmployeeDeleteView(DeleteView):
         emp_object.save()
         emp_object.user.is_active = False
         emp_object.user.save()
-        messages.add_message(self.request, messages.SUCCESS, 'New employee successfully added')        
+        messages.add_message(self.request, messages.SUCCESS, 'Employee successfully deleted')        
         return redirect(self.success_url)

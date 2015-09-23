@@ -166,8 +166,17 @@
                 <i class="fa fa-files-o"></i>
                 <span>Product Backlog</span>
               </a>
-              {% endifrole %}
             </li>
+            {% endifrole %}
+
+            {% ifrole DEVELOPER TESTER %}
+            <li class="{% block active_my_task %}{% endblock %}">
+              <a href="{% url 'emptask_mytask' %}">
+                <i class="fa fa-list"></i>
+                <span>My Tasks</span>
+              </a>
+            </li>
+            {% endifrole %}
           </ul>
         </section>
         <!-- /.sidebar -->

@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'scrum',
     'pretty_times',
     'report',
+    'emptask',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -139,3 +140,5 @@ template_loaders = (
     'django.template.loaders.app_directories.Loader'
 )
 managed = True
+
+DEBUG_TOOLBAR_PATCH_SETTINGS = False 

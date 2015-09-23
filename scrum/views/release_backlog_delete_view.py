@@ -23,6 +23,9 @@ class ReleaseBacklogDeleteView(DeleteView):
         return redirect(self.get_success_url())
 
     def get_success_url(self):
+        messages.add_message(self.request, messages.SUCCESS, \
+            'ReleaseBacklog successfully Deleted to {0}'
+        )
         success_url = reverse_lazy('scrum_product_backlog', \
             args = [self.get_object().product_backlog.id])
         return success_url

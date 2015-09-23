@@ -18,6 +18,10 @@ class SprintStoryDeleteView(DeleteView):
         user_story = self.get_object()
         user_story.updated_by = self.request.user.employee
         user_story.sprint = None
+        user_story.assiged_developer = None
+        user_story.developer_effort = None
+        user_story.assiged_tester = None
+        user_story.tester_effort = None
         user_story.save()
         return redirect(self.get_success_url())
 
