@@ -8,7 +8,7 @@ from django.utils import timezone
 
 class DevelopmentEstimateView(UpdateView):
     model = UserStory
-    template_name = "emptask/testing_estimate_form.html"
+    template_name = "emptask/development_estimate_form.html"
     fields = ('developer_effort', )
 
     @method_decorator(employee_role_required("product_owner"))
