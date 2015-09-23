@@ -10,13 +10,46 @@
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{% url 'hris_home' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{% url 'burndownchart_home' %}"><i class="fa fa-dashboard"></i> Product Backlogs</a></li>
         <li class="active">Dashboard</li>
       </ol>
     </section>
 {% endblock %}
 <!-- Add your content here -->
 {% block content %}
+
+  <form action="" method="post" >
+    {% csrf_token %}
+    
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group">
+          <label>Select Release Backlog</label>
+            <select id="release_backlog" name="release_backlog" class="form-control">
+                <option></option>
+                {% for key, value in release_backlogs.items %}
+                    <option>{{ key }}</option>
+                {% endfor %}
+            </select>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="form-group">
+          <label>Select Sprint</label>
+          <select id="sprint" name="sprint" class="form-control"></select>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>&nbsp;</label>
+          <button id="submit" class="btn btn-block btn-success" type="submit">View Chart</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
   <div id="container11" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 {% endblock %} 
 
@@ -44,15 +77,16 @@
       }
     },
     subtitle: {
-      text: 'Sprint 1',
+      text: '{{ sprint_name }}',
       x: -20
     },
     xAxis: {
-
-      {% autoescape off %}
-        categories: {{ days }}
-      {% endautoescape %}
-
+        title: {
+          text: 'Days'
+      },
+        {% autoescape off %}
+          categories: {{ days }}
+        {% endautoescape %}
     },
     yAxis: {
       title: {
@@ -91,6 +125,27 @@
       data: {{actual_data}}
     }]
   });
+});
+
+jQuery(function($) {
+    var dicts = {
+      {% load simplify_dict %}
+      {% for key, value in release_backlogs.items %}
+        '{{ key }}': {% get_sprints release_backlogs key %},
+      {% endfor %}
+
+    }
+    
+    var $dicts = $('#sprint');
+    $('#release_backlog').change(function () {
+        var release_backlog = $(this).val(), lcns = dicts[release_backlog] || [];
+        
+        var html = $.map(lcns, function(lcn){
+            return '<option value="' + lcn + '">' + lcn + '</option>'
+        }).join('');
+        $dicts.html(html)
+    });
+
 });
 
 </script>

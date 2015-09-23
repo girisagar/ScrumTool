@@ -55,6 +55,7 @@ class WorkLog(models.Model):
             self.log_type,
             self.user_story.title
         )
+
     class Meta:
         app_label = 'scrum'
         unique_together = ['date', 'employee', 'log_type', 'user_story']
