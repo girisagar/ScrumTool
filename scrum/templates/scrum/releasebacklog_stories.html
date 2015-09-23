@@ -12,7 +12,7 @@
     <div class="box-body no-padding body-shadow">
       <div class="mailbox-controls">
         <!-- Check all button -->
-        {% ifrole SCRUM_MASTER %}
+        {% ifrole SCRUM_MASTER PRODUCT_OWNER %}
         <span class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></span>
         <div class="btn-group">
           <select name="sprint_id" class="btn btn-default btn-sm" onchange="this.form.submit()">

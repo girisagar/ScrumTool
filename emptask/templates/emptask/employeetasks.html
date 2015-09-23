@@ -134,7 +134,7 @@
                                               <tr>
                                                 <td width="15px"><b>{{forloop.counter}}.</b></td>
                                                 <td class="mailbox-subject">
-                                                    <a href="{% url 'emptask_development_task_detail' story.id %}">
+                                                    <a href="{% url 'emptask_testing_task_detail' story.id %}">
                                                         <b>{{story.title}}</b>
                                                     </a>
                                                     -{{story.description|truncatechars:30}}
@@ -150,9 +150,9 @@
                                                 </td>
                                                 <td>
                                                     {% if story.developer_effort == None %}
-                                                        <a href="{% url 'emptask_development_estimate' story.id %}" title="Click to start task" data-toggle="tooltip"><i class="fa fa-times-circle icon-delete" ></i></a>
+                                                        <a href="{% url 'emptask_testing_estimate' story.id %}" title="Click to start task" data-toggle="tooltip"><i class="fa fa-times-circle icon-delete" ></i></a>
                                                     {% else %}
-                                                        <a href="{% url 'emptask_development_estimate' story.id %}" title="Click to change estimation" data-toggle="tooltip"><i class="fa fa-check-circle icon-edit" ></i></a>
+                                                        <a href="{% url 'emptask_testing_estimate' story.id %}" title="Click to change estimation" data-toggle="tooltip"><i class="fa fa-check-circle icon-edit" ></i></a>
                                                     {% endif %}
                                                 </td>
                                               </tr>
