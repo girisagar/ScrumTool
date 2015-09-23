@@ -37,7 +37,7 @@ def sprint(request, pk):
     
     release_backlogs = get_backlogs(pk)
 
-    sprint = Sprint.objects.filter(product_backlog_id=pk, name=sprint_name).get()
+    sprint = Sprint.objects.filter(name=sprint_name).get()
     sprint_id = sprint.id
     if sprint.sprint_start:
         sprint_start = str(sprint.sprint_start.date())
