@@ -1,4 +1,5 @@
 {% load scrum_tags %}
+{% load employee_tags %}
 <form action="{% url 'scrum_user_story_to_sprint' release.id %}" method="POST">
   {% csrf_token %}
   <div class="box box-solid">
@@ -11,6 +12,7 @@
     <div class="box-body no-padding body-shadow">
       <div class="mailbox-controls">
         <!-- Check all button -->
+        {% ifrole SCRUM_MASTER %}
         <span class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></span>
         <div class="btn-group">
           <select name="sprint_id" class="btn btn-default btn-sm" onchange="this.form.submit()">
@@ -22,6 +24,8 @@
             {% endfor %}
           </select>
         </div><!-- /.btn-group -->
+        {% endifrole %}
+
         {% if release %}
         <!--  -->
           {% load_release_stories release user %}

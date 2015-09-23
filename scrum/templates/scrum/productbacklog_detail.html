@@ -32,18 +32,20 @@
     <div class="col-md-7">
       <h3>{{object.name}}
 
-    {% ifrole PRODUCT_OWNER SCRUM_MASTER %}
+    {% ifrole PRODUCT_OWNER %}
         <a href="{% url 'scrum_release_backlog_create' object.id %}" title="add-release" data-toggle="tooltip" class="pull-right"><i class="fa  fa-plus-circle icon-add"></i></a>
     {% endifrole %}
       </h3>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-7" id="release-accordion"> 
+    <div class="col-md-7" id="release-accordion">
         {% include "scrum/releasebacklog_list.html" %}
     </div>
     <div class="col-md-5">
+      {% ifrole PRODUCT_OWNER %}
       {% include "scrum/productbacklog_stories.html" %}
+      {% endifrole %}
     </div><!-- /.col -->
   </div><!-- /.row -->
 {% endblock %} 

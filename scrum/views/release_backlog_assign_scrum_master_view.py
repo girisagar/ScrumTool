@@ -1,5 +1,6 @@
 from django.views.generic.edit import UpdateView
 from scrum.models import ReleaseBacklog
+from hris.models import Role
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -19,6 +20,9 @@ class ReleaseBacklogAssignScrumMasterView(UpdateView):
     def form_valid(self, form):
         form.instance.updated_by = self.request.user.employee
         employee = form.instance.scrum_master
+        scrum_master = Role.objects.get(code="scrum_master")
+        employee.roles.add(scrum_master)
+        employee.save()
         return super(ReleaseBacklogAssignScrumMasterView, self).form_valid(form)
 
 

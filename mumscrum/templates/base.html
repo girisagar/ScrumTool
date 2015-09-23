@@ -160,7 +160,7 @@
             </li>
             {% endifrole %}
 
-            {% ifrole PRODUCT_OWNER %}
+            {% ifrole PRODUCT_OWNER SCRUM_MASTER %}
             <li class="{% block active_product_backlog %}{% endblock %}">
               <a href="{% url 'scrum_product_backlog_list' %}">
                 <i class="fa fa-database"></i>

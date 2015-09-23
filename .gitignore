@@ -12,6 +12,7 @@ env/
 build/
 develop-eggs/
 #media/
+*.sqlite3
 downloads/
 eggs/
 .eggs/

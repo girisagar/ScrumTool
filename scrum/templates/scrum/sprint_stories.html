@@ -16,7 +16,9 @@
       <tr>
         <td class="mailbox-subject"><a href="{% url 'scrum_user_story_detail' story.product_backlog.id story.id %}"><b>{{story.title}}</b></a> - {{story.description|truncatechars:30}}<br/>{{story.created_on | relative_time }}, by <a href="{% url 'hris_employee_detail' story.created_by.id %}">{{story.created_by.name}}</a></td>
         <td class="no-margin developer-image-bg"  width="60">
+        {% ifrole SCRUM_MASTER %}
           <a href="{% url 'scrum_user_story_assign_developer' story.id %}"  data-toggle="tooltip" title="Developer:&nbsp;{% if story.assiged_developer %}{{story.assiged_developer.name}}{% else %}Click to assign{% endif %}">
+        {% endifrole %}
             {% if story.assiged_developer %}
               {% profile_image story.assiged_developer "developer-info-image" %}
               <figcaption><small><a  title="More about&nbsp;{{story.assiged_developer.name}}" data-toggle="tooltip" href="{% url 'hris_employee_detail' story.assiged_developer.id  %}"><i class="fa fa-info-circle icon-edit-samll"></i></a></small></figcaption>
@@ -25,10 +27,14 @@
               <i class="fa fa-plus-circle icon-add-small"></i>
             </div>
             {% endif %}
+        {% ifrole SCRUM_MASTER %}
           </a>
+        {% endifrole %}
         </td>
         <td class="no-margin tester-image-bg" width="60">
+        {% ifrole SCRUM_MASTER %}
           <a href="{% url 'scrum_user_story_assign_tester' story.id %}" data-toggle="tooltip" title="Tester:&nbsp;{% if story.assiged_tester %}{{story.assiged_tester.name}}{% else %}Click to assign{% endif %}">
+        {% endifrole %}
           {% if story.assiged_tester %}
             {% profile_image story.assiged_tester "developer-info-image" %}
             <figcaption><small><a  title="More about&nbsp;{{story.assiged_tester.name}}" data-toggle="tooltip" href="{% url 'hris_employee_detail' story.assiged_tester.id  %}"><i class="fa fa-info-circle icon-edit-samll"></i></a></small></figcaption>
@@ -37,10 +43,12 @@
             <i class="fa fa-plus-circle icon-add-small"></i>
           </div>
           {% endif %}
+        {% ifrole SCRUM_MASTER %}
           </a>
+        {% endifrole %}
         </td>
         <td class="mailbox-attachment">
-      {% ifrole PRODUCT_OWNER %}
+      {% ifrole SCRUM_MASTER %}
           <a href="{% url 'scrum_sprint_user_story_delete' story.id %}" title="Delete" data-toggle="tooltip"><i class="fa fa-trash icon-delete-small" title="Delete" data-toggle="tooltip"></i></a>
       {% endifrole %}
         </td>

@@ -9,7 +9,7 @@ class ReleaseBacklogUpdateView(UpdateView):
     model = ReleaseBacklog
     fields = ('name', )
 
-    # @method_decorator(employee_role_required("product_owner"))
+    @method_decorator(employee_role_required("product_owner"))
     def dispatch(self, *args, **kwargs):
         return super(ReleaseBacklogUpdateView, self).dispatch(*args, **kwargs)
 

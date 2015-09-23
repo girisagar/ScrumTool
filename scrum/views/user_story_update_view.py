@@ -9,7 +9,7 @@ class UserStoryUpdateView(UpdateView):
     model = UserStory
     fields = ('title', 'description' )
 
-    # @method_decorator(employee_role_required("product_owner"))
+    @method_decorator(employee_role_required("product_owner"))
     def dispatch(self, *args, **kwargs):
         return super(UserStoryUpdateView, self).dispatch(*args, **kwargs)
     

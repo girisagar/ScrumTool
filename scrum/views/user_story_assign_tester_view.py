@@ -12,7 +12,7 @@ class UserStoryAssignTesterView(UpdateView):
     # fields = ('scrum_master',)
     template_name = "scrum/userstory_assign_tester_form.html"
 
-    # @method_decorator(employee_role_required("product_owner"))
+    @method_decorator(employee_role_required("scrum_master"))
     def dispatch(self, *args, **kwargs):
         return super(UserStoryAssignTesterView, self).dispatch(*args, **kwargs)
 

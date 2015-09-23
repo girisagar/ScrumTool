@@ -9,7 +9,7 @@ import re
 
 class UserStoryToSprintView(View):
 
-    # @method_decorator(employee_role_required("product_owner"))
+    @method_decorator(employee_role_required("product_owner"))
     def dispatch(self, *args, **kwargs):
         return super(UserStoryToSprintView, self).dispatch(*args, **kwargs)
 

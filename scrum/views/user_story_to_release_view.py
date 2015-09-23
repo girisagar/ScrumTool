@@ -9,7 +9,7 @@ import re
 
 class UserStoryToReleaseView(View):
 
-    # @method_decorator(employee_role_required("product_owner"))
+    @method_decorator(employee_role_required("product_owner"))
     def dispatch(self, *args, **kwargs):
         return super(UserStoryToReleaseView, self).dispatch(*args, **kwargs)
 

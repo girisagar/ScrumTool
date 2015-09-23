@@ -9,7 +9,8 @@ from hris.decorators import employee_role_required
 class ReleaseBacklogStoryDeleteView(DeleteView):
     model = UserStory
     template_name = "scrum/release_backlog_userstory_confirm_delete.html"
-    # @method_decorator(employee_role_required("scrum_master"))
+    
+    @method_decorator(employee_role_required("product_owner"))
     def dispatch(self, *args, **kwargs):
         return super(ReleaseBacklogStoryDeleteView, self).dispatch(*args, **kwargs)
 

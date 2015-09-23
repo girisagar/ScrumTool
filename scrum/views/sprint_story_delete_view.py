@@ -10,7 +10,7 @@ class SprintStoryDeleteView(DeleteView):
     model = UserStory
     template_name = "scrum/sprint_userstory_confirm_delete.html"
     
-    # @method_decorator(employee_role_required("scrum_master"))
+    @method_decorator(employee_role_required("scrum_master"))
     def dispatch(self, *args, **kwargs):
         return super(SprintStoryDeleteView, self).dispatch(*args, **kwargs)
 

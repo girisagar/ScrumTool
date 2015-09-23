@@ -9,7 +9,7 @@ from hris.decorators import employee_role_required
 class ReleaseBacklogDeleteView(DeleteView):
     model = ReleaseBacklog
 
-    # @method_decorator(employee_role_required("product_owner"))
+    @method_decorator(employee_role_required("product_owner"))
     def dispatch(self, *args, **kwargs):
         return super(ReleaseBacklogDeleteView, self).dispatch(*args, **kwargs)
 

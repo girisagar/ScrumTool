@@ -45,7 +45,7 @@
                 <a class="pull-right" href="{% url 'scrum_user_story_delete' object.product_backlog.id object.id %}">
                   <i class="fa fa-trash" style="font-size: 20px; color: #FF6633;" title="Delete {{object.user.get_full_name}}" data-toggle="tooltip"></i>
                 </a>                            
-              { endifrole %}                           
+              {% endifrole %}                           
               </div>
             </div>
           </div>

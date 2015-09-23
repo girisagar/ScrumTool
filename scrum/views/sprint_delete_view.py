@@ -9,7 +9,7 @@ from hris.decorators import employee_role_required
 class SprintDeleteView(DeleteView):
     model = Sprint
 
-    # @method_decorator(employee_role_required("scrum_master"))
+    @method_decorator(employee_role_required("scrum_master"))
     def dispatch(self, *args, **kwargs):
         return super(SprintDeleteView, self).dispatch(*args, **kwargs)
 

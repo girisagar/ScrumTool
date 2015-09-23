@@ -8,7 +8,7 @@ class ReleaseBacklogListView(ListView):
     model = ReleaseBacklog
     paginate_by = 10
 
-    # @method_decorator(employee_role_required("product_owner"))
+    @method_decorator(employee_role_required("product_owner"))
     def dispatch(self, *args, **kwargs):
         return super(ReleaseBacklogListView, self).dispatch(*args, **kwargs)
     

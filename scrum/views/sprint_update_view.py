@@ -9,7 +9,7 @@ class SprintUpdateView(UpdateView):
     model = Sprint
     fields = ('name',)
 
-    # @method_decorator(employee_role_required("product_owner"))
+    @method_decorator(employee_role_required("scrum_master"))
     def dispatch(self, *args, **kwargs):
         return super(SprintUpdateView, self).dispatch(*args, **kwargs)
     

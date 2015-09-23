@@ -11,7 +11,7 @@ class SprintEndView(UpdateView):
     model = Sprint
     template_name = "scrum_sprint_end.html"
 
-    # @method_decorator(employee_role_required("product_owner"))
+    @method_decorator(employee_role_required("scrum_master"))
     def dispatch(self, *args, **kwargs):
         return super(SprintEndView, self).dispatch(*args, **kwargs)
     

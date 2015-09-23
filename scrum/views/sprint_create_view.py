@@ -11,7 +11,7 @@ class SprintCreateView(CreateView):
     model = Sprint
     fields = ('name', )
 
-    # @method_decorator(employee_role_required("scrum_master"))
+    @method_decorator(employee_role_required("scrum_master"))
     def dispatch(self,  *args, **kwargs):
         self.release_id = kwargs.get('release_id',None)
         return super(SprintCreateView, self).dispatch(*args, **kwargs)
