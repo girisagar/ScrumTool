@@ -12,11 +12,12 @@ class TestingTaskDetailView(DetailView):
 
     @method_decorator(employee_role_required("tester"))
     def dispatch(self, *args, **kwargs):
+        print 'here'
         return super(TestingTaskDetailView, self).dispatch(*args, **kwargs)
 
     def get(self, *args, **kwargs):
         instance = self.get_object()
-        if not instance.assiged_developer == self.request.user.employee:
+        if not instance.assiged_tester == self.request.user.employee:
             raise PermissionDenied
         return super(TestingTaskDetailView, self).get(*args, **kwargs)
 
