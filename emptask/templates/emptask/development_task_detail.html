@@ -3,7 +3,7 @@
 {% block head %}{% endblock %}
 {% load employee_tags %}
 <!-- This is page header and bredcrumb -->
-
+{% block active_my_task %}active{% endblock %}
 {% block content_header %}
     <section class="content-header">
       <h1>
@@ -59,7 +59,7 @@
                 <td><b>Estimated Hours</b></td>
                 <td>{{object.developer_effort}}&nbsp;Hours</td>
               </tr>
-              <tr>                  
+              <tr>
                 <td><b>Description:</b></td>
                 <td>{{object.description|linebreaks}}</td>
               </tr>

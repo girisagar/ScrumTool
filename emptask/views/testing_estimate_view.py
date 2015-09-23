@@ -11,7 +11,8 @@ class TestEstimateView(UpdateView):
     template_name = "emptask/testing_estimate_form.html"
     fields = ('tester_effort', )
 
-    # @method_decorator(employee_role_required("product_owner"))
+    
+    @method_decorator(employee_role_required("tester"))
     def dispatch(self, *args, **kwargs):
         print 'here'
         

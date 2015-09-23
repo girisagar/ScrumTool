@@ -11,7 +11,7 @@ class DevelopmentEstimateView(UpdateView):
     template_name = "emptask/testing_estimate_form.html"
     fields = ('developer_effort', )
 
-    # @method_decorator(employee_role_required("product_owner"))
+    @method_decorator(employee_role_required("product_owner"))
     def dispatch(self, *args, **kwargs):
         return super(DevelopmentEstimateView, self).dispatch(*args, **kwargs)
     
@@ -26,7 +26,7 @@ class DevelopmentEstimateView(UpdateView):
         # import pdb;
         # pdb.set_trace()
         if created:
-            worklog.updated_by = self.request.user.employee
+            worklog.created_by = self.request.user.employee
         worklog.work_remaining = form.cleaned_data['developer_effort']
         worklog.work_done = 0
         worklog.description = "User Story Task started"

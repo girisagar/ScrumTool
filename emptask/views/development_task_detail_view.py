@@ -10,7 +10,7 @@ class DevelopmentTaskDetailView(DetailView):
     model = UserStory
     template_name = "emptask/development_task_detail.html"
 
-    # @method_decorator(employee_role_required("developer", "tester"))
+    @method_decorator(employee_role_required("developer"))
     def dispatch(self, *args, **kwargs):
         return super(DevelopmentTaskDetailView, self).dispatch(*args, **kwargs)
 
@@ -24,7 +24,7 @@ class DevelopmentTaskDetailView(DetailView):
         today = timezone.now().date
         development_worklog =  WorkLogService.developer_worklogs(
             self.request.user.employee.id
-        ).filter(user_story=self.get_object())
+        ).filter(user_story=self.get_object(), log_type="development")
         context = super(DevelopmentTaskDetailView, self).get_context_data(*args, **kwargs)
         context['today'] = today
         context['development_worklog'] = development_worklog
