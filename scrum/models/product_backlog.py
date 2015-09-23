@@ -3,7 +3,7 @@ from hris.models import Employee
 
 class ProductBacklog(models.Model):
     name = models.CharField(
-        max_length=50, unique=True,
+        max_length=50,
         null=False, blank=False
     )
     owner = models.ForeignKey(

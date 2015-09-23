@@ -1,0 +1,49 @@
+{% extends "base.html"%}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+<!-- This is page header and bredcrumb -->
+
+{% block content_header %}
+    <section class="content-header">
+      <h1>
+        Emptask
+        <small>Control Panel</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{% url 'emptask_mytask' %}"><i class="fa fa-dashboard"></i> My Tasks</a></li>
+        <li><a href="{% url 'emptask_development_task_detail' user_story.id %}">{{user_story.title}}</a></li>
+        <li class="active">Estimate</li>
+      </ol>
+    </section>
+{% endblock %}
+
+<!-- Add your content here -->
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">Estimate Development Task <small>{{user_story.title}}</small></h3>
+      </div><!-- /.box-header -->
+      <!-- form start -->
+      <div class="row">
+        
+        <form class="col-md-8" action="" method="POST">
+            <div class="box-body">
+                {% csrf_token %}
+                {% load bootstrap3 %}
+                {% bootstrap_form form %}
+            </div>
+            <div class="box-footer">
+              <a class="btn btn-default" href="{{request.META.HTTP_REFERER}}">Cancel</a>
+              <button type="submit" class="btn btn-primary pull-right">Submit</button>
+            </div><!-- /.box-footer -->
+        </form>        
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %} 
+<!-- Add your javascript plugin src or code content here -->
+{% block footer_js %}{% endblock %}

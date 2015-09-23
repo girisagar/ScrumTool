@@ -4,7 +4,7 @@ from scrum.models import ProductBacklog
 
 class ReleaseBacklog(models.Model):
     name = models.CharField(
-        max_length=50, unique=True,
+        max_length=50,
         null=False, blank=False
     )
     scrum_master = models.ForeignKey(Employee, null=True, blank=True)
@@ -32,6 +32,7 @@ class ReleaseBacklog(models.Model):
 
     class Meta:
         app_label = 'scrum'
+        unique_together = ['product_backlog', 'name']
 
     def __unicode__(self):
         return self.name

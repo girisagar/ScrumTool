@@ -4,7 +4,7 @@ from scrum.models import ReleaseBacklog
 
 class Sprint(models.Model):
     name = models.CharField(
-        max_length=50, unique=True,
+        max_length=50,
         null=False, blank=False,
         help_text = "Sprint name should be in order like Sprint-1, Sprint-2, and so on"
     )

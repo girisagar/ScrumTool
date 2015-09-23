@@ -11,13 +11,16 @@ def profile_image(employee, css_class="employee-profile-avatar"):
     data = {'css_class': css_class}
     if isinstance(employee, Employee):
         data['success'] = True
-        data['image_url'] = employee.image.url
+        try:
+            image_url = employee.image.url
+        except:
+            image_url = '/media/hris/employee-image/default-avatar.png'
+        data['image_url'] = image_url
         data['name'] = employee.user.get_full_name()
         return data 
     data['success'] = False
-    data['image_url'] =  '/media/hris/employee-image/default-avatar.png'
+    data['image_url'] =  image_url
     return data
-
 
 @register.tag()
 def ifrole(parser, token):

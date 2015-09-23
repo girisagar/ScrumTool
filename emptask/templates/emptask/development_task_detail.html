@@ -1,0 +1,128 @@
+{% extends "base.html"%}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+{% load employee_tags %}
+<!-- This is page header and bredcrumb -->
+
+{% block content_header %}
+    <section class="content-header">
+      <h1>
+        Emptask
+        <small>Control Panel</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{% url 'emptask_mytask' %}"><i class="fa fa-dashboard"></i> My Tasks</a></li>
+        <li><a href="{% url 'emptask_development_task_detail' object.id %}">{{object.title}}</a></li>
+        <li class="active">Detail</li>
+      </ol>
+    </section>
+{% endblock %}
+<!-- Add your content here -->
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <!-- Profile Image -->
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Development Task<small> {{object.title}}</small></h3>
+        <div class="box-tools pull-right">
+          <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div><!-- /.box-header -->
+      <div class="box-body box-profile">
+      {% comment %}
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+            </div>
+            <div class="col-md-1">
+              <div class="row">
+                <div class="col-md-12"> 
+                {% ifrole DEVELOPER %}
+                  <a class="pull-left" href="{% url 'emptask_development_estimate' object.id %}">
+                    <i class="fa fa-pencil icon-edit-small" style="font-size: 20px; color: #33CC33;" title="Edit Actual estimation"  data-toggle="tooltip"></i>
+                  </a>
+                {% endifrole %}
+                </div>
+              </div>
+            </div>
+        </div>
+        {% endcomment %}
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <tr>                  
+                <td><b>Title</b></td>
+                <td>{{object.title}}</td>
+              </tr>              
+              <tr>                  
+                <td><b>Estimated Hours</b></td>
+                <td>{{object.developer_effort}}&nbsp;Hours</td>
+              </tr>
+              <tr>                  
+                <td><b>Description:</b></td>
+                <td>{{object.description|linebreaks}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>User Story</th>
+                  <th>Work Remaining</th>
+                  <th>Work Done</th>
+                  <th width="500">Description</th>
+                  {% if log_exists_for_today %}
+                    <th>Action</th>
+                  {% endif %}
+                </tr>
+              </thead>
+
+              <tbody>
+                {% if not log_exists_for_today %}
+                  <tr>                    
+                    <td colspan="5">
+                    <a href="{% url 'emptask_development_estimate_create' user_story.id %}" class="btn btn-primary btn-flat">Create Estimation for today</a>
+                    </td>
+                  </tr>
+                  {% endif %}
+
+                {% for worklog in development_worklog %}
+                  <tr>                  
+                    <td>{{worklog.date}}</td>
+                    <td>{{worklog.user_story.title}}</td>
+                    <td>{{worklog.work_remaining}}</td>
+                    <td>{{worklog.work_done}}</td>
+                    <td>{{worklog.description}}</td>
+                    {% if worklog.date == today and log_exists_for_today %}
+                      <td>
+                        <a href="{% url 'emptask_development_estimate_update' worklog.id %}">Update</a>
+                      </td>
+                    {% endif %}
+                  </tr>
+                {% empty %}
+                  <td colspan="6">
+                    <div class="alert alert-danger">
+                      You have not updated your task progress yet
+                    </div>
+                  </td>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+
+    <!-- About Me Box -->
+    <!-- /.box -->
+  </div><!-- /.col -->
+  <!-- /.col -->
+</div>
+{% endblock %} 
+<!-- Add your javascript plugin src or code content here -->
+{% block footer_js %}{% endblock %}

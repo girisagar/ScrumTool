@@ -36,3 +36,19 @@ class UserStoryService(object):
             sprint__id=sprint_id,
             is_deleted=deleted
         )
+
+    @staticmethod
+    def developer_user_stories(developer_id, deleted=False):
+        # default returns all undeleted userstories where
+        return UserStory.objects.filter(
+            assiged_developer__id=developer_id,
+            is_deleted=deleted
+        )
+
+    @staticmethod
+    def tester_user_stories(tester_id, deleted=False):
+        # default returns all undeleted userstories where
+        return UserStory.objects.filter(
+            assiged_developer__id=tester_id,
+            is_deleted=deleted
+        )
