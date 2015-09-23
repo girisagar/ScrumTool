@@ -110,4 +110,4 @@ def get_backlogs(product_backlog_id=1):
     return release_backlogs
 
 def get_latest_sprint():
-    return "Sprint-3"
+    return  Sprint.objects.latest('sprint_start').name
