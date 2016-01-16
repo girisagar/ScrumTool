@@ -13,8 +13,7 @@ django-pretty-times==0.2.0
 Pillow==2.9.0
 
 wheel==0.24.0
-## 
-or simply run ##
+## or simply run ##
 
 <path to project>(mumscrum)$ **pip install -r requirements.txt**
 
