@@ -14,7 +14,7 @@ Pillow==2.9.0
 wheel==0.24.0
 
 or simple run
-<path to project>(mumscrum)$ pip install -r requirements.txt
+<path to project>(mumscrum)$ **pip install -r requirements.txt**
 
 ## Run the Project ##
-<path to project>(mumscrum)$ python manage.py runserver
+<path to project>(mumscrum)$ **python manage.py runserver**
