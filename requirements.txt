@@ -5,6 +5,7 @@ dj-database-url==0.4.0
 django-bootstrap3==6.2.2
 django-pretty-times==0.2.0
 gunicorn==19.4.5
+psycopg2
 wheel==0.24.0
 whitenoise==2.0.6
 wsgiref==0.1.2
