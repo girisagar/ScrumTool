@@ -19,3 +19,7 @@ wheel==0.24.0
 
 ## Run the Project ##
 <path to project>(mumscrum)$ **python manage.py runserver**
+
+##DEMO:##
+
+http://lit-depths-19400.herokuapp.com/hris/employee/
