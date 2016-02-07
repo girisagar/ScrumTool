@@ -22,4 +22,8 @@ wheel==0.24.0
 
 ##DEMO:##
 
-http://lit-depths-19400.herokuapp.com/hris/employee/
+http://lit-depths-19400.herokuapp.com/
+
+Username: sagar.giri
+Password: sagar
+
